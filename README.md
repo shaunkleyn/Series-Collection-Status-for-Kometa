@@ -29,7 +29,7 @@ I decided to use borders to display the availability of shows and seasons.  The 
 
 You can see that "Evil Online" is incomplete (by the orange border).  If I go into "Evil Online" you can see that Season 1 is complete (green border), Season 2 is missing and Season 3 has episodes missing (orange border).
 
-<img src="[drawing.jpg](https://user-images.githubusercontent.com/10231893/211212821-0181fa2b-9ba1-4e49-aa53-592e6ea205ac.png)" alt="drawing" height="300"/>
+<img src="https://user-images.githubusercontent.com/10231893/211212821-0181fa2b-9ba1-4e49-aa53-592e6ea205ac.png" alt="drawing" height="300"/>
 
 
 
