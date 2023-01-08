@@ -1,0 +1,8 @@
+libraries: 
+  TV Shows:
+    metadata_path:
+    - file: config/TVShows.yml
+    - folder: config/overlays/
+    overlay_path:
+    - file: config/overlays/availability.yml
+    - file: config/overlays/availability-season.yml
