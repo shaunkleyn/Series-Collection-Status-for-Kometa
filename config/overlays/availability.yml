@@ -1,0 +1,27 @@
+overlays:
+  incomplete:
+    overlay:
+      name: incomplete
+      group: availability
+      weight: 210
+    plex_search:
+      any:
+        label.regex: '(?i)\b(incomplete)\b'
+        
+  complete:
+    overlay:
+      name: complete
+      group: availability
+      weight: 200
+    plex_search:
+      any:
+        label.regex: '(?i)\b(complete)\b'
+        
+  inprogress:
+    overlay:
+      name: inprogress
+      group: availability
+      weight: 220
+    plex_search:
+      any:
+        label.regex: '(?i)\b(inprogress)\b'      
