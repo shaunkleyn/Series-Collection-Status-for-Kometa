@@ -33,6 +33,7 @@ In short the labels are:
 * In Progress: All seasons and episodes have been downloaded but the latest season is still being aired
 
 ## Todo / bugs
+- Allow usage with Sonarr so that it can pass an ID of a series.  The script should then only update that specific series.
 - Show is incorrectly being labeled as "In Progress" when all episodes have already been aired, its status is "Continuing" on Sonarr but yet episodes from last season is missing.  The show should actually be labeled as "Incomplete" then.
 - Probably more to come...
 
