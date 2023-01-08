@@ -25,10 +25,9 @@ I decided to use borders to display the availability of shows and seasons.  The 
 * Orange = Incomplete
 * Blue = In Progress
 
-<img width="967" alt="image" src="https://user-images.githubusercontent.com/10231893/211212516-98c2e7c2-3f64-468e-81ac-09eb577ba77c.png">
+![image](https://user-images.githubusercontent.com/10231893/211212798-9be5abac-8728-4a53-a714-565f23663623.png)
 
 You can see that "Evil Online" is incomplete (by the orange border).  If I go into "Evil Online" you can see that Season 1 is complete (green border), Season 2 is missing and Season 3 has episodes missing (orange border).
-<img width="409" alt="image" src="https://user-images.githubusercontent.com/10231893/211212718-dc6511ab-4d71-4558-9a79-21f557f44517.png">
-
+![image](https://user-images.githubusercontent.com/10231893/211212821-0181fa2b-9ba1-4e49-aa53-592e6ea205ac.png)
 
 
