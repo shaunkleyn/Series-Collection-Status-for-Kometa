@@ -11,6 +11,19 @@ The script is far from perfect and there are a few bugs but thus far it's workin
 ## The PMM configs
 There are 2 configs (I'm sure there's a way to only use 1 but still have a lot to learn), one to create the overlays for Shows and the other to create overlays for Seasons. 
 
+## How to use this
+(Basic Python and PMM knowledge required)
+1. Download all files in this repo
+2. Copy the Python script to a folder of your preference (I suggest creating a dedicated folder for the script as we'll be using a Python virtual environemt to run it)
+3. Using a terminal / command prompt, `cd` to the script's directory
+4. Run the following to create a virtual environment `python3 -m venv pmm-venv`
+5. Activate the virtual environment using `pmm-venv\Scripts\activate`
+6. Install ArrAPI using `pip install arrapi`
+7. Install Python PlexAPI using `pip install plexapi`
+8. Run the script using `python set-availability-labels.py`
+9. Update your PMM config to include the "availability.yml" configs and copy the overlays to your overlays folder
+10. Run PMM
+
 ## The Plex labels
 Show can either be complete, meaning all the seasons and episodes are availabe on disk, or incomplete, meaning some seasons or episodes are missing.  However, if there's a new show or season that are being aired not all episodes will be available yet and I don't want to label it as "incomplete" because the missing episodes aren't available yet.  Due to this I had to an "In progress" label.
 
