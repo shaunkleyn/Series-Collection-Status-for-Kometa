@@ -18,3 +18,11 @@ In short the labels are:
 * Complete: All seasons and episodes have been downloaded
 * Incomplete: Some episodes or entire seasons are missing and should still be downloaded
 * In Progress: All seasons and episodes have been downloaded but the latest season is still being aired
+
+## What it looks like
+I decided to use borders to display the availability of shows and seasons.  The border overlays are as follows:
+* Green = Complete
+* Orange = Incomplete
+* Blue = In Progress
+
+
