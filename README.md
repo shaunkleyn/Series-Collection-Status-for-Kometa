@@ -15,15 +15,15 @@ There are 2 configs (I'm sure there's a way to only use 1 but still have a lot t
 (Basic Python and PMM knowledge required)
 1. Download all files in this repo
 2. Copy the Python script to a folder of your preference (I suggest creating a dedicated folder for the script as we'll be using a Python virtual environemt to run it)
-3. Update your Plex and Sonarr connection strings, API keys and Tokens in the python file (I'll probably move it out to a config at some point) and save it
-3. Using a terminal / command prompt, `cd` to the script's directory
-4. Run the following to create a virtual environment `python -m venv pmm-venv` or `python3 -m venv pmm-venv` (check which one works for you)
-5. Activate the virtual environment using `pmm-venv\Scripts\activate`
-6. Install ArrAPI using `pip install arrapi`
-7. Install Python PlexAPI using `pip install plexapi`
-8. Run the script using `python set-availability-labels.py`
-9. Update your PMM config to include the "availability.yml" configs and copy the overlays to your overlays folder
-10. Run PMM
+3. Configure your URL's and API key & token in the `set-availability-labels.ini` file
+4. Using a terminal / command prompt, `cd` to the script's directory
+5. Run the following to create a virtual environment `python -m venv pmm-venv` or `python3 -m venv pmm-venv` (check which one works for you)
+6. Activate the virtual environment using `pmm-venv\Scripts\activate`
+7. Install ArrAPI using `pip install arrapi`
+8. Install Python PlexAPI using `pip install plexapi`
+9. Run the script using `python set-availability-labels.py`
+10. Update your PMM config to include the "availability.yml" configs and copy the overlays to your overlays folder
+11. Run PMM
 
 ## The Plex labels
 Show can either be complete, meaning all the seasons and episodes are availabe on disk, or incomplete, meaning some seasons or episodes are missing.  However, if there's a new show or season that are being aired not all episodes will be available yet and I don't want to label it as "incomplete" because the missing episodes aren't available yet.  Due to this I had to an "In progress" label.
