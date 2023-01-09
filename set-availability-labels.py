@@ -3,15 +3,15 @@ from plexapi.server import PlexServer
 import re
 
 # Plex
-baseurl = 'http://127.0.0.1:32400'
-token = 'PLEX_TOKEN'
+plex_url = 'http://127.0.0.1:32400'
+plex_token = 'PLEX_TOKEN'
 
 # Sonarr
-baseurl = "http://127.0.0.1:8989/"
-apikey = "SONARR_API_KEY"
+sonarr_url = "http://127.0.0.1:8989/"
+sonarr_api_key = "SONARR_API_KEY"
 
-plex = PlexServer(baseurl, token)
-sonarr = SonarrAPI(baseurl, apikey)
+plex = PlexServer(plex_url, plex_token)
+sonarr = SonarrAPI(sonarr_url, sonarr_api_key)
 
 tvdb_id_to_process = None
 section = "TV Shows"

@@ -15,8 +15,9 @@ There are 2 configs (I'm sure there's a way to only use 1 but still have a lot t
 (Basic Python and PMM knowledge required)
 1. Download all files in this repo
 2. Copy the Python script to a folder of your preference (I suggest creating a dedicated folder for the script as we'll be using a Python virtual environemt to run it)
+3. Update your Plex and Sonarr connection strings, API keys and Tokens in the python file (I'll probably move it out to a config at some point) and save it
 3. Using a terminal / command prompt, `cd` to the script's directory
-4. Run the following to create a virtual environment `python3 -m venv pmm-venv`
+4. Run the following to create a virtual environment `python -m venv pmm-venv` or `python3 -m venv pmm-venv` (check which one works for you)
 5. Activate the virtual environment using `pmm-venv\Scripts\activate`
 6. Install ArrAPI using `pip install arrapi`
 7. Install Python PlexAPI using `pip install plexapi`
