@@ -1,9 +1,13 @@
-# PMM-Config
+# PMM-Config for Series Availability borders in Plex
 
 ## Background
 I wanted to be able to easily see on Plex if a show has been downloaded in full or if there are missing episodes or seasons. After searching around for days for something that can do it I finally asked for some help from the guys on the [Plex Meta Manager Discord group](https://discord.gg/NfH6mGFuAB) and SirGareth [confirmed](https://discord.com/channels/822460010649878528/822460010649878531/1061099419153469571) that [Plex Meta Manager](https://metamanager.wiki/en/latest/index.html) (PMM) would not be able to do it but that I'd be able to do it using a few API's to add labels to Plex and then use PMM to add overlays using those labels.
 
 Being a newbie to both Python and PMM I am sure there are neater and better ways to accomplish this but this is the script and configs I came up with that is currently working for me.  
+
+**NOTE:**
+I created this for my own personal use and sharing it so that anyone can change it to their liking and requirements.
+
 
 ## The script
 The script is far from perfect and there are a few bugs but thus far it's working for most of the shows. It makes use of [ArrApi](https://arrapi.metamanager.wiki/en/latest/index.html) and [Python PlexAPI](https://python-plexapi.readthedocs.io/en/latest/introduction.html) to check whether a show or season is complete and then adds a Plex label to it that can then later be used by PMM to create overlays.
@@ -15,15 +19,15 @@ There are 2 configs (I'm sure there's a way to only use 1 but still have a lot t
 (Basic Python and PMM knowledge required)
 1. Download all files in this repo
 2. Copy the Python script to a folder of your preference (I suggest creating a dedicated folder for the script as we'll be using a Python virtual environemt to run it)
-3. Update your Plex and Sonarr connection strings, API keys and Tokens in the python file (I'll probably move it out to a config at some point) and save it
-3. Using a terminal / command prompt, `cd` to the script's directory
-4. Run the following to create a virtual environment `python -m venv pmm-venv` or `python3 -m venv pmm-venv` (check which one works for you)
-5. Activate the virtual environment using `pmm-venv\Scripts\activate`
-6. Install ArrAPI using `pip install arrapi`
-7. Install Python PlexAPI using `pip install plexapi`
-8. Run the script using `python set-availability-labels.py`
-9. Update your PMM config to include the "availability.yml" configs and copy the overlays to your overlays folder
-10. Run PMM
+3. Configure your URL's and API key & token in the `set-availability-labels.ini` file
+4. Using a terminal / command prompt, `cd` to the script's directory
+5. Run the following to create a virtual environment `python -m venv pmm-venv` or `python3 -m venv pmm-venv` (check which one works for you)
+6. Activate the virtual environment using `pmm-venv\Scripts\activate`
+7. Install ArrAPI using `pip install arrapi`
+8. Install Python PlexAPI using `pip install plexapi`
+9. Run the script using `python set-availability-labels.py`
+10. Update your PMM config to include the "availability.yml" configs and copy the overlays to your overlays folder
+11. Run PMM
 
 ## The Plex labels
 Show can either be complete, meaning all the seasons and episodes are availabe on disk, or incomplete, meaning some seasons or episodes are missing.  However, if there's a new show or season that are being aired not all episodes will be available yet and I don't want to label it as "incomplete" because the missing episodes aren't available yet.  Due to this I had to an "In progress" label.
