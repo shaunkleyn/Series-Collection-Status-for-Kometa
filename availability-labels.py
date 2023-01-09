@@ -3,6 +3,7 @@ from arrapi import SonarrAPI
 from plexapi.server import PlexServer
 import re
 import configparser
+import sys
 
 config = configparser.ConfigParser()
 config.read('availability-labels.ini')
@@ -34,9 +35,7 @@ label_icons = {
     INPROGRESS : '🔵'
 }
 
-
 season_statuses = []
-
 
 def getTvdbId(series):
     tvdb = next((guid for guid in series.guids if guid.id.startswith("tvdb")), None)
@@ -92,6 +91,9 @@ def contains(array, value):
         if item == value:
             return True
     return False
+
+if sys.argv.count > 1:
+    tvdb_id_to_process = sys.argv[1]
 
 # Get all shows from the Plex library
 plex_series_list = plex.library.section(library_name).all()
