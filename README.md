@@ -6,7 +6,7 @@ I wanted to be able to easily see on Plex if a show has been downloaded in full 
 Being a newbie to both Python and PMM I am sure there are neater and better ways to accomplish this but this is the script and configs I came up with that is currently working for me.  
 
 **NOTE:**
-I created this for personal use and sharing it so that anyone can change it to their liking and requirements.
+I created this for my own personal use and sharing it so that anyone can change it to their liking and requirements.
 
 
 ## The script
