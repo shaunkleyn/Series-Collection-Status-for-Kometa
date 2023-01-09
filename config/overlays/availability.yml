@@ -6,7 +6,7 @@ overlays:
       weight: 210
     plex_search:
       any:
-        label.regex: '(?i)\b(incomplete)\b'
+        label.regex: '(?i)\b(Incomplete)\b'
         
   complete:
     overlay:
@@ -15,7 +15,7 @@ overlays:
       weight: 200
     plex_search:
       any:
-        label.regex: '(?i)\b(complete)\b'
+        label.regex: '(?i)\b(Complete)\b'
         
   inprogress:
     overlay:
@@ -24,4 +24,4 @@ overlays:
       weight: 220
     plex_search:
       any:
-        label.regex: '(?i)\b(inprogress)\b'      
+        label.regex: '(?i)\b(InProgress)\b'      
