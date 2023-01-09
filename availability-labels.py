@@ -5,7 +5,7 @@ import re
 import configparser
 
 config = configparser.ConfigParser()
-config.read('set-availability-labels.ini')
+config.read('availability-labels.ini')
 
 # Plex
 plex_url = config['plex']['url']
