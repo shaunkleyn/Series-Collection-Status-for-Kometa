@@ -44,6 +44,9 @@ def getTvdbId(series):
 def setLabel(mediaItem, label):
     mediaItem.addLabel(label)
 
+    # Remove all labels that were added prior to changing the casing
+    mediaItem.removeLabel('inprogress').removeLabel('incomplete').removeLabel('complete')
+
     # Remove all other label labels
     if label == COMPLETE:
         mediaItem.removeLabel(INPROGRESS).removeLabel(INCOMPLETE)
