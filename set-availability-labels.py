@@ -1,29 +1,73 @@
+# for VS Code install packages using `py -m pip install arrapi` and `py -m pip install plexapi`
 from arrapi import SonarrAPI
 from plexapi.server import PlexServer
 import re
+import configparser
+
+config = configparser.ConfigParser()
+config.read('set-label-labels.ini')
 
 # Plex
-plex_url = 'http://127.0.0.1:32400'
-plex_token = 'PLEX_TOKEN'
+plex_url = config['plex']['url']
+plex_token = config['plex']['token']
+plex_library = config['plex']['library']
 
 # Sonarr
-sonarr_url = "http://127.0.0.1:8989/"
-sonarr_api_key = "SONARR_API_KEY"
+sonarr_url = config['sonarr']['url']
+sonarr_api_key = config['sonarr']['apikey']
 
 plex = PlexServer(plex_url, plex_token)
 sonarr = SonarrAPI(sonarr_url, sonarr_api_key)
 
 tvdb_id_to_process = None
-section = "TV Shows"
+libraryName = plex_library
 
-plex_shows = plex.library.section(section).all()
+# label statuses
+COMPLETE = 'Complete'
+INCOMPLETE = 'Incomplete'
+INPROGRESS = 'InProgress'
 
-for plex_series in plex_shows:
-    tvdb = next((obj for obj in plex_series.guids if obj.id.startswith("tvdb")), None)
+# Icons used for printing output while processing shows
+labelIcons = {
+    COMPLETE : '🟢',
+    INCOMPLETE : '🔴',
+    INPROGRESS : '🔵'
+}
 
+
+def getTvdbId(series):
+    tvdb = next((obj for obj in series.guids if obj.id.startswith("tvdb")), None)
     match = re.search(r'\d+', tvdb.id)
-    tvdb_id = int(match.group()) if match else 0
+    return int(match.group()) if match else 0
 
+
+def setLabel(mediaItem, label):
+    mediaItem.addLabel(label)
+
+    # Remove all other label labels
+    if label == COMPLETE:
+        mediaItem.removeLabel(INPROGRESS).removeLabel(INCOMPLETE)
+    elif label == INCOMPLETE:
+        mediaItem.removeLabel(INPROGRESS).removeLabel(COMPLETE)
+    elif label == INPROGRESS:
+        mediaItem.removeLabel(INCOMPLETE).removeLabel(COMPLETE)
+    
+    mediaItemTitle = mediaItem.title
+
+    # If the media item has a property named "seasonNumber" then we want to display it
+    if hasattr(mediaItem, 'seasonNumber'):
+        mediaItemTitle = mediaItem.parentTitle + ' - ' + mediaItemTitle
+
+    print(labelIcons[label] + ' ' + mediaItemTitle)  
+
+
+# Get all shows from the Plex library
+plex_shows = plex.library.section(libraryName).all()
+for plex_series in plex_shows:
+    # Get the TvDB ID for the show
+    tvdb_id = getTvdbId(plex_series)
+    # If a TvDB ID has been specified to process a specific show
+    # then only continue when we find the show we want to process
     if tvdb_id_to_process is not None and tvdb_id != tvdb_id_to_process:
         continue
 
@@ -38,7 +82,6 @@ for plex_series in plex_shows:
         # Assume the series is complete
         complete_series = True
 
-
         # Because Sonarr uses an online source to retrieve series details we'll use
         # Sonarr to identify available seasons for this show (some shows might not have
         # all seasons loaded in Plex due to them being unavailable)
@@ -50,41 +93,32 @@ for plex_series in plex_shows:
                     if sonarr_season.seasonNumber >= sonarr_series.seasonCount:
                         if sonarr_season.episodeFileCount < sonarr_season.totalEpisodeCount:
                             if sonarr_series.status == 'continuing':
-                                plex_season.addLabel('inprogress').removeLabel('complete').removeLabel('incomplete')
-                                print('🔵' + plex_series.title + ' - Season ' + str(sonarr_season.seasonNumber))  
+                                setLabel(plex_season, INPROGRESS)
 
-                                if complete_series == True:
-                                    plex_series.addLabel('inprogress').removeLabel('complete').removeLabel('incomplete')
-                                    print('🔵' + plex_series.title)  
+                                if complete_series == True: 
+                                    setLabel(plex_series, INPROGRESS) 
                                     complete_season = None
                                     break
                             else:
-                                plex_season.addLabel('incomplete').removeLabel('complete').removeLabel('inprogress')
-                                print('🔴' + plex_series.title + ' - Season ' + str(sonarr_season.seasonNumber)) 
+                                setLabel(plex_season, INCOMPLETE) 
                                 complete_series = False
                         else:
                             complete_season = True
-                            plex_season.addLabel('complete').removeLabel('incomplete').removeLabel('inprogress')
-                            print('🟢' + plex_series.title + ' - Season ' + str(sonarr_season.seasonNumber))  
-
+                            setLabel(plex_season, COMPLETE)
                     else:
                         if complete_season:
-                            plex_season.addLabel('complete').removeLabel('incomplete').removeLabel('inprogress')
-                            print('🟢' + plex_series.title + ' - Season ' + str(sonarr_season.seasonNumber))  
+                            setLabel(plex_season, COMPLETE)
                         else:
-                            plex_season.addLabel('incomplete').removeLabel('complete').removeLabel('inprogress')
-                            print('🔴' + plex_series.title + ' - Season ' + str(sonarr_season.seasonNumber))  
+                            setLabel(plex_season, INCOMPLETE) 
                             complete_series = False
                 else:
                     complete_series = False
 
         if complete_season is not None:
             if complete_series == True:
-                plex_series.addLabel('complete').removeLabel('incomplete').removeLabel('inprogress')
-                print('🟢' + plex_series.title)  
+                setLabel(plex_series, COMPLETE) 
             else:
-                plex_series.addLabel('incomplete').removeLabel('complete').removeLabel('inprogress')
-                print('🔴' + plex_series.title)  
+                setLabel(plex_series, INCOMPLETE)
 
 print('Done')
 
