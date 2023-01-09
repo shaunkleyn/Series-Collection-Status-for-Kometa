@@ -56,7 +56,6 @@ for plex_series in plex_shows:
                                 if complete_series == True:
                                     plex_series.addLabel('inprogress').removeLabel('complete').removeLabel('incomplete')
                                     print('🔵' + plex_series.title)  
-                                    print(sonarr_series)
                                     complete_season = None
                                     break
                             else:
