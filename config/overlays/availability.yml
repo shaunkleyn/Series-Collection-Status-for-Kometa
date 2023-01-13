@@ -1,27 +1,40 @@
+templates:
+  availability_template:
+    <<label>:
+    overlay:
+      name: <<label>>_thick
+      group: availability
+      weight: <<weight>>
+    plex_search:
+      any:
+        label.regex: '(?i)\b(<<label>>)\b'
+  season_availability_template:
+    <<label>:
+    builder_level: season
+    overlay_level: season
+    overlay:
+      name: <<label>>_thick
+      group: availability
+      weight: <<weight>>
+    plex_search:
+      any:
+        label.regex: '(?i)\b(<<label>>)\b'
+
 overlays:
   incomplete:
-    overlay:
-      name: incomplete
-      group: availability
-      weight: 210
-    plex_search:
-      any:
-        label.regex: '(?i)\b(Incomplete)\b'
+    template: { name: availability_template, label: Incomplete, weight: 210}
         
   complete:
-    overlay:
-      name: complete
-      group: availability
-      weight: 200
-    plex_search:
-      any:
-        label.regex: '(?i)\b(Complete)\b'
+    template: { name: availability_template, label: Complete, weight: 200}
         
   inprogress:
-    overlay:
-      name: inprogress
-      group: availability
-      weight: 220
-    plex_search:
-      any:
-        label.regex: '(?i)\b(InProgress)\b'      
+    template: { name: availability_template, label: InProgress, weight: 220}   
+
+  incomplete_season:
+    template: { name: season_availability_template, label: Incomplete, weight: 210} 
+    
+  complete_season:
+    template: { name: season_availability_template, label: Complete, weight: 200} 
+    
+  inprogress_season:
+    template: { name: season_availability_template, label: InProgress, weight: 220}    
