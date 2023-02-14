@@ -6,9 +6,15 @@ import re
 import configparser
 import sys
 import logging
+from os import environ
+
+
+
 
 config = configparser.ConfigParser()
 config.read('availability-labels.ini')
+
+print(config.sections())
 
 # Plex
 plex_url = config['plex']['url']
@@ -37,10 +43,6 @@ label_icons = {
     INPROGRESS : '🔵'
 }
 
-season_labels = []
-
-
-
 #############
 ## LOGGING ##
 #############
@@ -62,22 +64,37 @@ ch.setFormatter(formatter)
 # add ch to logger
 logger.addHandler(ch)
 
+print('Checking configuration')
+
+
+
+season_labels = []
+
 
 
 
 
 def main():
+    tvdb_id_to_process = 0
     def getTvdbId(series):
+        print(series)
         logger.debug('Extracting TVDB ID')
         tvdb = next((guid for guid in series.guids if guid.id.startswith("tvdb")), None)
+        print(tvdb)
         match = re.search(r'\d+', tvdb.id)
+        
         return int(match.group()) if match else 0
 
     def setLabel(media_item, label):
         # Remove all labels that were added prior to changing the casing
-        media_item.removeLabel('inprogress').removeLabel('incomplete').removeLabel('complete').addLabel(label)
+        try:
+            media_item.removeLabel('inprogress').removeLabel('incomplete').removeLabel('complete').addLabel(label)
+        except:
+            logger.warn('could not remove lowercase labels')
+            
         season_labels.append(label)
 
+        
         # Remove all other label labels
         if label == COMPLETE:
             media_item.removeLabel(INPROGRESS).removeLabel(INCOMPLETE)
@@ -129,11 +146,23 @@ def main():
         # resulting in the `seasonCount` being less than the actual number of seasons, therefore we check if the current 
         # `seasonNumber` is greater or equal to the `seasonCount` to determine if we're looking at the latest season
         return sonarr_season.seasonNumber >= sonarr_series.seasonCount
-
+    
+    print(sys.argv)
+    #for i in range(1, len(sys.argv)):
+    #    logger.info('argument:', i, 'value:', sys.argv[i])
+    #    print('argument:', i, 'value:', sys.argv[i])
+    
     plex_series_list = []
     if len(sys.argv) > 1:
-        logger.debug('TVDB ID "' + str(sys.argv[1]) + '" passed as argument')
-        tvdb_id_to_process = sys.argv[1]
+        logger.info('TVDB ID "' + str(sys.argv[1]) + '" passed as argument')
+        tvdb_id_to_process = int(sys.argv[1])
+    elif environ.get('sonarr_series_tvdbid') is not None:
+        logger.info('TVDB ID "' + str(environ.get('sonarr_series_tvdbid')) + '" passed as argument from Sonarr')
+        tvdb_id_to_process = int(environ.get('sonarr_series_tvdbid'))
+    
+    print(tvdb_id_to_process)
+    
+    if tvdb_id_to_process > 0:
         try:
             item = plex.library.section(library_name).getGuid('tvdb://' + str(tvdb_id_to_process))
             plex_series_list.append(item)
@@ -141,24 +170,29 @@ def main():
             print('item (' + str(tvdb_id_to_process) + ' does not exist in Plex')
             return
     else:
+        print('get all')
         plex_series_list = plex.library.section(library_name).all()
     
+
+    print('using lib ' + library_name)
     
     # Get all shows from the Plex library
     logger.debug('Using library ' + library_name)
     
     #plex_series_list = plex.library.section(library_name).getGuid('tvdb://' + str(tvdb_id_to_process))
     
-  
+    print(len(plex_series_list))
     for plex_series in plex_series_list:
         season_labels.clear()
     
         # Get the TvDB ID for the show
         tvdb_id = getTvdbId(plex_series)
-    
+        
         # If a TvDB ID has been specified to process a specific show
         # then only continue when we find the show we want to process
-        if tvdb_id_to_process is not None and tvdb_id != int(tvdb_id_to_process):
+        
+        if tvdb_id_to_process is not None and tvdb_id_to_process > 0 and tvdb_id != int(tvdb_id_to_process):
+            print('continue')
             continue
         try:
             sonarr_series = sonarr.get_series(tvdb_id=tvdb_id)
@@ -168,11 +202,12 @@ def main():
     
         logger.debug('Processing ' + sonarr_series.title)
     
+        print('Processing ' + sonarr_series.title)
         # Some series return 0 episodes so ensure that we actually have episodes to check against
         if sonarr_series is not None and sonarr_series.totalEpisodeCount > 0:
             # Assume the series is complete
             complete_series = True
-    
+            
             logger.debug('Found ' + str(len(sonarr_series.seasons)) + ' seasons')
     
             # Because Sonarr uses an online source to retrieve series details we'll use
