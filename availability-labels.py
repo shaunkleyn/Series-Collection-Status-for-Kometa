@@ -6,7 +6,9 @@ import re
 import configparser
 import sys
 import logging
+import json
 from os import environ
+import os
 
 
 
@@ -46,7 +48,9 @@ label_icons = {
 #############
 ## LOGGING ##
 #############
-logging.basicConfig(filename='log.txt', level=logging.DEBUG, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+log_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../log.txt')
+
+logging.basicConfig(filename=log_file, level=logging.DEBUG, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 # create logger
 logger = logging.getLogger('')
 logger.setLevel(logging.INFO)
@@ -90,19 +94,21 @@ def main():
         try:
             media_item.removeLabel('inprogress').removeLabel('incomplete').removeLabel('complete').addLabel(label)
         except:
-            logger.warn('could not remove lowercase labels')
+            logger.warning('could not remove lowercase labels')
             
         season_labels.append(label)
 
-        
-        # Remove all other label labels
-        if label == COMPLETE:
-            media_item.removeLabel(INPROGRESS).removeLabel(INCOMPLETE)
-        elif label == INCOMPLETE:
-            media_item.removeLabel(INPROGRESS).removeLabel(COMPLETE)
-            incomplete_seasons = True
-        elif label == INPROGRESS:
-            media_item.removeLabel(INCOMPLETE).removeLabel(COMPLETE)
+        print(hasattr(media_item, 'labels'))
+        if hasattr(media_item, 'labels'):
+            media_item.addLabel(label)
+            # Remove all other label labels
+            if label == COMPLETE:
+                media_item.removeLabel(INPROGRESS).removeLabel(INCOMPLETE)
+            elif label == INCOMPLETE:
+                media_item.removeLabel(INPROGRESS).removeLabel(COMPLETE)
+                incomplete_seasons = True
+            elif label == INPROGRESS:
+                media_item.removeLabel(INCOMPLETE).removeLabel(COMPLETE)
 
         media_item_title = media_item.title
 

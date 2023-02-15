@@ -1,2 +1,7 @@
 .vscode/settings.json
 set-availability-labels.ini
+env/
+*.png
+.DS_Store
+log.txt
+.vscode/launch.json
