@@ -6,17 +6,13 @@ import re
 import configparser
 import sys
 import logging
-import json
+import datetime
 from os import environ
 import os
 
 
-
-
 config = configparser.ConfigParser()
 config.read('availability-labels.ini')
-
-print(config.sections())
 
 # Plex
 plex_url = config['plex']['url']
@@ -30,7 +26,7 @@ sonarr_api_key = config['sonarr']['apikey']
 plex = PlexServer(plex_url, plex_token)
 sonarr = SonarrAPI(sonarr_url, sonarr_api_key)
 
-tvdb_id_to_process = None
+seriesId = ""
 library_name = plex_library
 
 # label statuses
@@ -48,16 +44,16 @@ label_icons = {
 #############
 ## LOGGING ##
 #############
-log_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../log.txt')
+log_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'log.txt')
 
 logging.basicConfig(filename=log_file, level=logging.DEBUG, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 # create logger
 logger = logging.getLogger('')
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 # create console handler and set level to debug
 ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
+ch.setLevel(logging.INFO)
 
 # create formatter
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -68,37 +64,21 @@ ch.setFormatter(formatter)
 # add ch to logger
 logger.addHandler(ch)
 
-print('Checking configuration')
-
-
+logger.info('Checking configuration')
 
 season_labels = []
-
-
-
-
 
 def main():
     tvdb_id_to_process = 0
     def getTvdbId(series):
-        print(series)
         logger.debug('Extracting TVDB ID')
         tvdb = next((guid for guid in series.guids if guid.id.startswith("tvdb")), None)
-        print(tvdb)
         match = re.search(r'\d+', tvdb.id)
         
         return int(match.group()) if match else 0
 
     def setLabel(media_item, label):
-        # Remove all labels that were added prior to changing the casing
-        try:
-            media_item.removeLabel('inprogress').removeLabel('incomplete').removeLabel('complete').addLabel(label)
-        except:
-            logger.warning('could not remove lowercase labels')
-            
         season_labels.append(label)
-
-        print(hasattr(media_item, 'labels'))
         if hasattr(media_item, 'labels'):
             media_item.addLabel(label)
             # Remove all other label labels
@@ -109,7 +89,6 @@ def main():
                 incomplete_seasons = True
             elif label == INPROGRESS:
                 media_item.removeLabel(INCOMPLETE).removeLabel(COMPLETE)
-
         media_item_title = media_item.title
 
         # If the media item has a property named "seasonNumber" then we want to display it
@@ -120,7 +99,7 @@ def main():
         logger.info(label_icons[label] + ' ' + label + ' ' + media_item_title)
 
 
-    def getPercentOfEpisodes(sonarr_season):
+    def getPercentOfEpisodes(sonarr_season, sonarr_series):
         logger.debug('Getting episode percentage')
         # If Sonarr says that we have 100% of the episodes then it must mean we have all the aired episodes
         # That doesn't mean we have the entire season as there might still be episodes that are still being aired
@@ -132,6 +111,11 @@ def main():
             logger.debug('Calculating percent of episodes')
             percent_of_episodes = (sonarr_season.episodeFileCount / sonarr_season.totalEpisodeCount) * 100
 
+        if sonarr_series.ended == True or sonarr_series.nextAiring.date() < datetime.today().date():
+            percent_of_episodes = (sonarr_season.episodeFileCount / sonarr_season.totalEpisodeCount) * 100
+            logger.debug('Show has ended')
+            return percent_of_episodes           
+        
         logger.debug('Using ' + str(percent_of_episodes) + ' instead of ' + str(sonarr_season.percentOfEpisodes))
         return percent_of_episodes
 
@@ -140,11 +124,21 @@ def main():
         return next((season for season in plex_series.seasons() if int(season.seasonNumber) == episode_number), None)
 
 
-    def contains(array, value):
+    def contains(array, value, exact_match = True):
         for item in array:
-            if item == value:
+            if exact_match == True and item == value:
+                return True
+            elif exact_match == False and value in item:
                 return True
         return False
+    
+    def find(array, value, exact_match = True):
+        for item in array:
+            if exact_match == True and item == value:
+                return item
+            elif exact_match == False and value in item:
+                return item
+        return None
 
     def isLatestSeason(sonarr_season):
         logger.debug('Check if this is the latest season')
@@ -152,11 +146,6 @@ def main():
         # resulting in the `seasonCount` being less than the actual number of seasons, therefore we check if the current 
         # `seasonNumber` is greater or equal to the `seasonCount` to determine if we're looking at the latest season
         return sonarr_season.seasonNumber >= sonarr_series.seasonCount
-    
-    print(sys.argv)
-    #for i in range(1, len(sys.argv)):
-    #    logger.info('argument:', i, 'value:', sys.argv[i])
-    #    print('argument:', i, 'value:', sys.argv[i])
     
     plex_series_list = []
     if len(sys.argv) > 1:
@@ -166,49 +155,39 @@ def main():
         logger.info('TVDB ID "' + str(environ.get('sonarr_series_tvdbid')) + '" passed as argument from Sonarr')
         tvdb_id_to_process = int(environ.get('sonarr_series_tvdbid'))
     
-    print(tvdb_id_to_process)
-    
     if tvdb_id_to_process > 0:
         try:
             item = plex.library.section(library_name).getGuid('tvdb://' + str(tvdb_id_to_process))
             plex_series_list.append(item)
         except:
-            print('item (' + str(tvdb_id_to_process) + ' does not exist in Plex')
+            logger.warning(f'item {str(tvdb_id_to_process)} does not exist in {library_name} on Plex')
             return
     else:
-        print('get all')
         plex_series_list = plex.library.section(library_name).all()
-    
-
-    print('using lib ' + library_name)
     
     # Get all shows from the Plex library
     logger.debug('Using library ' + library_name)
     
-    #plex_series_list = plex.library.section(library_name).getGuid('tvdb://' + str(tvdb_id_to_process))
-    
-    print(len(plex_series_list))
     for plex_series in plex_series_list:
         season_labels.clear()
     
         # Get the TvDB ID for the show
-        tvdb_id = getTvdbId(plex_series)
+        try:
+            tvdb_id = getTvdbId(plex_series)
+        except:
+            continue
         
         # If a TvDB ID has been specified to process a specific show
         # then only continue when we find the show we want to process
         
         if tvdb_id_to_process is not None and tvdb_id_to_process > 0 and tvdb_id != int(tvdb_id_to_process):
-            print('continue')
             continue
         try:
             sonarr_series = sonarr.get_series(tvdb_id=tvdb_id)
         except:
             logger.warn(plex_series.title + ' not found on Sonarr')
-            print(plex_series.title + ' not found on Sonarr')
-    
-        logger.debug('Processing ' + sonarr_series.title)
-    
-        print('Processing ' + sonarr_series.title)
+
+        logger.info('Processing ' + sonarr_series.title)
         # Some series return 0 episodes so ensure that we actually have episodes to check against
         if sonarr_series is not None and sonarr_series.totalEpisodeCount > 0:
             # Assume the series is complete
@@ -231,13 +210,17 @@ def main():
                         logger.debug(sonarr_series.title + ' Season ' + str(sonarr_series.seasons.count) + ' not found in Plex. Skipping this season')
                         complete_series = False
                     else:
-                        if getPercentOfEpisodes(sonarr_season) == 100.0:
+                        if getPercentOfEpisodes(sonarr_season, sonarr_series) == 100.0:
                             logger.debug('Episode percentage is 100')
                             if sonarr_season.episodeFileCount < sonarr_season.totalEpisodeCount:
-                                logger.debug('episodeFileCount: ' + str(sonarr_season.episodeFileCount) + ' < totalEpisodeCount: ' + str(sonarr_season.totalEpisodeCount))
-                                setLabel(plex_season, INPROGRESS)
+                                if sonarr_series.ended == False:
+                                    logger.debug('episodeFileCount: ' + str(sonarr_season.episodeFileCount) + ' < totalEpisodeCount: ' + str(sonarr_season.totalEpisodeCount))
+                                    setLabel(plex_season, INPROGRESS)
+                                else:
+                                    setLabel(plex_season, INCOMPLETE)
                             else:
                                 setLabel(plex_season, COMPLETE)
+                            
                         else:
                             # If we don't have the entire season it might be that it's still being aired so let's check for that
                             if isLatestSeason(sonarr_season):
@@ -253,10 +236,6 @@ def main():
                                     logger.debug('Missing episodes: ' + str(missing_episodes))
     
                                     # When there are more episodes missing than those that should still be aired then the season is missing old episodes
-                                    #if episodes_not_aired + missing_episodes > episodes_not_aired:
-                                    #     setLabel(plex_season, INCOMPLETE)
-                                    #else:
-                                        #setLabel(plex_season, INPROGRESS)
                                     setLabel(plex_season, INPROGRESS)
                                 else:
                                     logger.debug('Series has ended')
@@ -285,9 +264,22 @@ def main():
                     logger.debug('Setting Series label COMPLETE')
                     # When no season was flagged as INCOMPLETE and the last season is not INPROGRESS then the Show is COMPLETE
                     setLabel(plex_series, COMPLETE)
+            
+            # set show status
+            logger.info(f'Set status to {sonarr_series.status}')
+            sonarr_status_tag = f'sonarr_status_{sonarr_series.status}'
+            obj = next((obj for obj in plex_series.labels if 'sonarr_status_' in str(obj.tag).lower()), None)
+            
+            if(obj is not None):
+                if str(obj.tag).lower() == sonarr_status_tag.lower():
+                    logger.info(f'Status is already set to {sonarr_series.status}')
+                    continue
+            
+            plex_series.addLabel(sonarr_status_tag)
+            plex_series.refresh()
 
 if __name__ == "__main__":
     main()
 
-print('Done')
+logger.info('Done')
 
