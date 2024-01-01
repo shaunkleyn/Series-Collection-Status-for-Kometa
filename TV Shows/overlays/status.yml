@@ -1,0 +1,41 @@
+templates:
+  normalized:
+    optional:
+      - overlay_level
+      - use_<<slug>>
+    default:
+      overlay: <<overlay_name>>
+      horizontal_offset: 15
+      horizontal_align: right
+      vertical_offset: 150
+      vertical_align: bottom
+      standard_value: 105
+      back_color: "#00000099"
+      back_radius: 30
+      back_width: 305
+    collection_level: <<overlay_level>>
+    allowed_library_types: <<use_<<slug>>>>
+    ignore_blank_results: true
+    overlay:
+      name: <<overlay_name>>
+      file: config/overlays/normalized.png
+      group: normalized
+      weight: <<weight>>
+      horizontal_offset: <<horizontal_offset>>
+      horizontal_align: <<horizontal_align>>
+      vertical_offset: <<vertical_offset>>
+      vertical_align: <<vertical_align>>
+      back_color: <<back_color>>
+      back_radius: <<back_radius>>
+      back_width: <<back_width>>
+
+overlays:
+  normalized:
+    builder_level: episode
+    overlay_level: episode
+    template:
+      - name: normalized
+        weight: 250
+    plex_all: true
+    filters:
+      audio_track_title: Normalized

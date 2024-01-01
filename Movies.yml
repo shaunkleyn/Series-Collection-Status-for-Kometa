@@ -1,0 +1,11 @@
+templates: #contains definitions of templates that can be leveraged by multiple collections
+external_templates: #contains path types that point to external templates that can be leveraged by multiple collections
+collections: #contains definitions of collections you wish to add to one or more libraries
+  Recent Comedy:
+    plex_search:
+      all:
+        genre: Comedy
+        year.gte: 2012
+      limit: 20
+dynamic_collections: #contains definitions of dynamic collections you wish to create
+metadata: #contains definitions of metadata changes to movie, show, or music library’s items [movie titles, episode descriptions, etc.]

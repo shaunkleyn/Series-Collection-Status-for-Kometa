@@ -1,8 +1,292 @@
-libraries: 
-  TV Shows:
+## This file is a template remove the .template to use the file
+general:
+  log_level: info  # Set the log level (options: debug, info, warning, error, critical)
+
+libraries:                       # This is called out once within the config.yml file
+  Movies1:                        # These are names of libraries in your Plex
+    operations:
+      mass_user_rating_update: imdb
+      mass_collection_mode: hide
+      mass_genre_update: omdb
+      mass_audience_rating_update: imdb
+      mass_critic_rating_update: mdb_tomatoes
+      genre_mapper:
+        Action/Adventure: Action
+        Action & Adventure: Action
+        Sci-Fi: Science Fiction
     metadata_path:
-    - file: config/TVShows.yml
-    - folder: config/overlays/
+    #- pmm: basic                 # This is a file within PMM's defaults folder
+    #- pmm: imdb                  # This is a file within PMM's defaults folder
+      # see the wiki for how to use local files, folders, URLs, or files from git
+    #- file: config/Movies.yml
+    overlay_path:                   
+    #- remove_overlays: true     
+    #- reapply_overlays: true    
+    - git: PMM/overlays/resolution        
+    - git: PMM/overlays/runtimes        
+      template_variables:
+        vertical_align: bottom
+        horizontal_align: left
+        text: ""
+        back_width: 300
+    - pmm: audio_codec
+    - file: config/overlays/normalized.yml
+    - file: config/overlays/overlays_movies_rating     ### ratings YML
+    #- pmm: streaming
+    #  template_variables:
+    #    vertical_align: bottom 
+    #    vertical_offset: 20
+    #    file: config/overlays/streaming_services/<<overlay_name>>.png
+        
+    #- pmm: aspect
+    #  template_variables:
+    #    font: config/fonts/Roboto-BoldCondensed.ttf  
+    #    back_color: "#000000cc"
+    #    horizontal_align: center
+    #    vertical_align: top 
+    #    text_1.33: "4:3"
+    #    text_1.66: "5:3"
+    #    text_1.77: "16:9"    
+    #    text_1.78: "16:9"    
+    #    text_1.85: "Wide" 
+    #    text_2.1: "18:1"
+    #    text_2.35: "Ultra-Wide"    
+    #    text_2.75: "Panavision"    
+    #    text_3.61: "Ultra-Widescreen"    
+    #    text_4.00: "Polyvision"    
+    #- file: config/overlays/top_movies/config.yml    ### ratings YML
+    #- file: config/Movies/overlays_movies_round_rating.yml  
+    #- file: config/movie_overlays     ### ratings YML       
+    ###FLAGS for subtitles use just one language
+    ###- pmm: languages        ##subtitles
+    ###  template_variables:
+    ###    languages:
+    ###      - en                     ###Your subtitle language https://metamanager.wiki/en/latest/defaults/overlays/languages.html#supported-audio-subtitle-language-flags
+    ###      #- en                    ### Second subtitles 
+    ###    use_subtitles: true
+    ###    file: config/overlays/flags/<<key>>.png
+    ###    text: " "
+    ###    back_width: 60
+    ###    back_height: 120
+    ###    back_color: "#FFFFFF00"
+    ###    horizontal_offset: 180
+    ###    horizontal_align: right
+    ###    vertical_offset: 35
+    ###    vertical_align: bottom 
+    # see the wiki for how to use local files, folders, URLs, or files from git
+  TV Shows:
+    #metadata_path:
+    #- file: config/Shows.yml
     overlay_path:
-    - file: config/overlays/availability.yml
-    - file: config/overlays/availability-season.yml
+    #- remove_overlays: true
+    #- reapply_overlays: true 
+    - file: config/overlays/TV-Shows-returning-soon-overlay.yml
+      template_variables:
+        back_width: 920
+        vertical_offset: 40
+        horizontal_offset: 40
+        horizontal_align: left
+        back_radius: 20
+        returning_soon_back_color: "#000000cc"
+        returning_soon_font_color: "#e5a00d"
+        returning_back_color: "#1E781Eee"
+        # returning_back_color: "#138F13DD"
+        returning_font_color: "#FFFFFFEE"
+        returning_text: "RETURNING"
+        
+        airing_back_color: "#3b78c5DD"
+        airing_font_color: "#FFFFFFDD"
+        airing_text: "AIRING"
+
+        canceled_back_color: "#cf2727ee"
+        canceled_font_color: "#FFFFFFDD"
+        canceled_text: "CANCELED"
+        
+        ended_back_color: "#b36700EE"
+        ended_font_color: "#FFFFFFEE"
+        ended_text: "ENDED"
+
+        font-size: 80
+    - file: config/availability/overlays/availability.yml
+    
+    #- pmm: status
+    #  template_variables:
+    #    back_line_color: "#e5a00d"
+    #    back_line_width: 25
+    #    back_color: "#00000000"
+    #    back_width: 950
+    #    back_height: 1450
+    #    vertical_offset: 25
+    #    horizontal_offset: 25
+    #    horizontal_align: left
+    #    back_radius: 20
+    #    
+
+
+    #- folder: config/overlays/
+    - pmm: network
+      template_variables:
+        horizontal_align: left
+        vertical_align: bottom
+        vertical_offset: 40
+        horizontal_offset: 40
+        text_align: left
+        addon_position: left
+        addon_offset: 50
+    - file: config/overlays/normalized.yml
+
+    ###- pmm: resolution
+    ###  template_variables:
+    ###    overlay_level: episode
+    ###- pmm: runtimes             
+    ###  template_variables:       
+    ###    overlay_level: episode  
+    ###- pmm: video_format         
+    ###  template_variables:       
+    ###    overlay_level: episode  
+    ###- pmm: audio_codec          
+    ###  template_variables:       
+    ###    overlay_level: episode
+    ###- file: config/overlays/normalized.yml
+    ###  template_variables:       
+    ###    overlay_level: episode
+#playlist_files:
+#- pmm: playlist                  # This is a file within PMM's defaults folder
+#  template_variables:
+#    libraries: Movies, TV Shows     # list of libraries that you want the PMM Defaults playlists to look at
+  # see the wiki for how to use local files, folders, URLs, or files from git
+settings:
+  cache: true
+  cache_expiration: 60
+  asset_directory: config/assets
+  asset_folders: true
+  asset_depth: 0
+  create_asset_folders: false
+  prioritize_assets: false
+  dimensional_asset_rename: false
+  download_url_assets: false
+  show_missing_season_assets: false
+  show_missing_episode_assets: false
+  show_asset_not_needed: true
+  sync_mode: append
+  minimum_items: 1
+  default_collection_order:
+  delete_below_minimum: true
+  delete_not_scheduled: false
+  run_again_delay: 2
+  missing_only_released: false
+  only_filter_missing: false
+  show_unmanaged: true
+  show_unconfigured: true
+  show_filtered: false
+  show_options: false
+  show_missing: true
+  show_missing_assets: true
+  save_report: false
+  tvdb_language: eng
+  ignore_ids:
+  ignore_imdb_ids:
+  item_refresh_delay: 0
+  playlist_sync_to_user: all
+  playlist_exclude_users:
+  playlist_report: false
+  verify_ssl: true
+  custom_repo:
+  check_nightly: false
+webhooks:                        # Can be individually specified per library as well
+  error: notifiarr
+  version: notifiarr
+  run_start: notifiarr
+  run_end: notifiarr
+  changes: notifiarr
+  delete: notifiarr
+plex:                            # Can be individually specified per library as well; REQUIRED for the script to run
+  url: http://192.168.8.100:32400
+  token: sxB1_9pYYAH7_7nsPcD6
+  timeout: 60
+  db_cache:
+  clean_bundles: false
+  empty_trash: false
+  optimize: false
+tmdb:                            # REQUIRED for the script to run
+  apikey: 01d04cf31460fed63022190a92aee3a2
+  language: en
+  cache_expiration: 60
+  region:
+tautulli:                        # Can be individually specified per library as well
+  url: https://tautulli.mediaservarr.co.za
+# url: http://192.168.8.100:28181/
+  apikey: f8056366ada64f38a1ffd57966b47d0f
+#github:
+#  token: ################################
+omdb:
+  apikey: ae932bb8
+  cache_expiration: 60
+mdblist:
+  apikey: iyukl3k81shk01onz2lxq1pki
+  cache_expiration: 60
+notifiarr:
+  apikey: 4f24a058-d117-4eb2-abde-a5285171e57c
+anidb:                           # Not required for AniDB builders unless you want mature content
+  username: ######
+  password: ######
+  language: en
+  client:
+radarr:                          # Can be individually specified per library as well
+  url: https://radarr.mediaservarr.co.za
+#  url: http://192.168.8.100:7676/
+#  token: b293e113389a48ebbe95e92177aea8ee
+  token: 964c1be22a464dfd989627a595214755
+  add_missing: false
+  add_existing: false
+  root_folder_path: T:\movies
+  monitor: true
+  availability: announced
+  quality_profile: HD-1080p
+  tag:
+  search: false
+  radarr_path:
+  plex_path:
+  upgrade_existing: false
+  ignore_cache: false
+sonarr:                          # Can be individually specified per library as well
+  url: https://sonarr.mediaservarr.co.za
+#  url: http://192.168.8.100:8989/
+  token: d4f9ec92776f449d812c2a34c9f24091
+  add_missing: false
+  add_existing: false
+  root_folder_path: T:\series
+  monitor: missing
+  quality_profile: HD-1080p
+  language_profile: English
+  series_type: standard
+  season_folder: true
+  tag:
+  search: false
+  cutoff_search: false
+  sonarr_path:
+  plex_path:
+  upgrade_existing: false
+  ignore_cache: false
+############################################
+trakt:
+  client_id: f1cc953db5dc936270c107d567168c5543a7b40d630d7d046850cf991fc2151a
+  client_secret: 59fa21e9ba075a5bb8a3a93353c6924b219b94095a0c4884b2163502a5c4b836
+  authorization:
+    access_token: f153d963d9f8282c258e9c9d85b895b10087352bc04662e00261b98db6b86552
+    token_type: Bearer
+    expires_in: 7889238
+    refresh_token: 3bda734fcdf36540c748bb7eafb6a61d72dd3a6af71bfe4b88d4292ec2e5a48b
+    scope: public
+    created_at: 1703703082
+  pin:
+############################################
+mal:
+  client_id: ####################
+  client_secret: ####################
+  authorization:
+    # everything below is autofilled by the script
+    access_token:
+    token_type:
+    expires_in:
+    refresh_token:

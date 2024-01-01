@@ -1,0 +1,226 @@
+templates:
+  # TEXT CENTER
+  TV_Top_TextCenter:
+    default:
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+      back_height: 140
+      back_width: 1920
+      font_size: 70
+      font: fonts/Roboto-Bold.ttf
+      back_radius: 1
+      returning_soon_back_color: "#81007F47"
+      returning_soon_font_color: "#e5a00d"
+      returning_soon_back_line_color: "#00000000"
+      returning_soon_back_line_width: 0
+
+      returning_back_color: "#138f148f"
+      returning_font_color: "#ffffff"
+      returning_back_line_color: "#00000000"
+      returning_back_line_width: 0
+
+      airing_back_color: "#3b78c5ba"
+      airing_font_color: "#ffffff"
+      airing_back_line_color: "#00000000"
+      airing_back_line_width: 0
+
+      canceled_back_color: "#cf2727a6"
+      canceled_font_color: "#ffffff"
+      canceled_back_line_color: "#00000000"
+      canceled_back_line_width: 0
+
+      ended_back_color: "#b36700d4"
+      ended_font_color: "#ffffff"
+      ended_back_line_color: "#00000000"
+      ended_back_line_width: 0
+
+    sync_mode: sync
+    builder_level: show
+    overlay:
+      name: text(<<text>>)
+      horizontal_offset: <<horizontal_offset>>
+      horizontal_align: <<horizontal_align>>
+      vertical_offset: <<vertical_offset>>
+      vertical_align: <<vertical_align>>
+      #font: fonts/Roboto-Bold.ttf
+      font: <<font>>
+      # font: config/fonts/Juventus-Fans-Bold.ttf
+      #font_size: 70
+      font_size: <<font_size>>
+      font_color: <<color>>
+      group: TV_Top_TextCenter
+      weight: <<weight>>
+      back_color: <<back_color>>
+      #back_width: 1920
+      back_width: <<back_width>>
+      # back_height: 140
+      back_height: <<back_height>>
+      back_radius: <<back_radius>>
+
+      returning_soon_back_color: <<returning_soon_back_color>>
+      returning_soon_font_color: <<returning_soon_font_color>>
+      returning_soon_back_line_color: <<returning_soon_border_color>>
+      returning_soon_back_line_width: <<returning_soon_border_width>>
+      returning_soon_text: <<returning_soon_text>>
+
+      returning_back_color: <<returning_back_color>>
+      returning_font_color: <<returning_font_color>>
+      returning_back_line_color: <<returning_border_color>>
+      returning_back_line_width: <<returning_border_width>>
+      returning_text: <<returning_text>>
+
+      airing_back_color: <<airing_back_color>>
+      airing_font_color: <<airing_font_color>>
+      airing_back_line_color: <<airing_border_color>>
+      airing_back_line_width: <<airing_border_width>>
+      airing_text: <<airing_text>>
+
+      canceled_back_color: <<canceled_back_color>>
+      canceled_font_color: <<canceled_font_color>>
+      canceled_back_line_color: <canceled_border_color>>
+      canceled_back_line_width: <canceled_border_width>>
+      canceled_text: <<canceled_text>>
+
+      ended_back_color: <<ended_back_color>>
+      ended_font_color: <<ended_font_color>>
+      ended_back_line_color: <ended_border_color>>
+      ended_back_line_width: <ended_border_width>>
+      ended_text: <<ended_text>>
+
+
+
+overlays:
+  # Upcoming
+  TV_Top_TextCenter_Upcoming:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 90
+      text: "UPCOMING"
+      color: "#FFFFFF"
+      back_color: "#fc4e03DD"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - returning
+      - planned
+      - production
+      release.after: today
+
+  # New
+  TV_Top_TextCenter_New:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 60
+      text: "NEW SERIES"
+      color: "#FFFFFF"
+      back_color: "#008001DD"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - returning
+      - planned
+      - production
+      - ended
+      - canceled
+      first_episode_aired: 45
+
+  # Airing
+  TV_Top_TextCenter_Airing:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 40
+      text: "<<airing_text>>"
+      color: "<<airing_font_color>>"
+      back_color: "<<airing_back_color>>"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - returning
+      - planned
+      - production
+      last_episode_aired.after: 12/17/2023
+
+  # Airing Today
+  TV_Top_TextCenter_Airing_Today:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 40
+      text: "<<airing_text>>"
+      color: "<<airing_font_color>>"
+      back_color: "<<airing_back_color>>"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/01/2024
+      air_date.lte: 01/01/2024
+      with_status: 0
+      limit: 500
+
+  # Ended
+  TV_Top_TextCenter_Ended:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 20
+      text: "<<ended_text>>"
+      color: "<<ended_font_color>>"
+      back_color: "<<ended_back_color>>"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - ended
+
+  # Canceled
+  TV_Top_TextCenter_Canceled:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 20
+      text: "<<canceled_text>>"
+      color: "<<canceled_font_color>>"
+      back_color: "<<canceled_back_color>>"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - canceled
+
+  # Returning
+  TV_Top_TextCenter_Returning:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 30
+      text: "<<returning_text>>"
+      color: "<<returning_font_color>>"
+      back_color: "<<returning_back_color>>"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - returning
+      - planned
+      - production

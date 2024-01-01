@@ -1,0 +1,1939 @@
+templates:
+  # TEXT CENTER
+  TV_Top_TextCenter:
+    sync_mode: sync
+    builder_level: show
+    overlay:
+      name: text(<<text>>)
+      horizontal_offset: <<horizontal_offset>>
+      horizontal_align: <<horizontal_align>>
+      vertical_offset: <<vertical_offset>>
+      vertical_align: <<vertical_align>>
+      font: config/fonts/Juventus-Fans-Bold.ttf
+      font_size: 70
+      font_color: <<color>>
+      group: TV_Top_TextCenter
+      weight: <<weight>>
+      back_color: <<back_color>>
+      back_width: 1920
+      back_height: 90
+
+    default:
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+
+overlays:
+  # Upcoming
+  TV_Top_TextCenter_Upcoming:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 90
+      text: "U P C O M I N G"
+      color: "#FFFFFF"
+      back_color: "#fc4e03"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - returning
+      - planned
+      - production
+      release.after: today
+
+  # New
+  TV_Top_TextCenter_New:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 60
+      text: "N E W  S E R I E S"
+      color: "#FFFFFF"
+      back_color: "#008001"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - returning
+      - planned
+      - production
+      - ended
+      - canceled
+      first_episode_aired: 45
+
+  # Airing
+  TV_Top_TextCenter_Airing:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 40
+      text: "A I R I N G"
+      color: "#FFFFFF"
+      back_color: "#3b78c5ba"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - returning
+      - planned
+      - production
+      last_episode_aired.after: 12/02/2023
+
+  # Airing Today
+  TV_Top_TextCenter_Airing_Today:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 40
+      text: "A I R I N G"
+      color: "#FFFFFF"
+      back_color: "#3b78c5ba"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/17/2023
+      air_date.lte: 12/17/2023
+      with_status: 0
+      limit: 500
+
+  # Ended
+  TV_Top_TextCenter_Ended:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 20
+      text: "E N D E D"
+      color: "#FFFFFF"
+      back_color: "#b36700d4"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - ended
+
+  # Canceled
+  TV_Top_TextCenter_Canceled:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 20
+      text: "C A N C E L E D"
+      color: "#FFFFFF"
+      back_color: "#cf2727a6"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - canceled
+
+  # Returning
+  TV_Top_TextCenter_Returning:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 30
+      text: "R E T U R N I N G"
+      color: "#FFFFFF"
+      back_color: "#138f148f"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    plex_all: true
+    filters:
+      tmdb_status:
+      - returning
+      - planned
+      - production
+
+# RETURNING 18/12/2023
+  TV_Top_TextCenter_Returning_18/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 18/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/18/2023
+      air_date.lte: 12/18/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 19/12/2023
+  TV_Top_TextCenter_Returning_19/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 19/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/19/2023
+      air_date.lte: 12/19/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 20/12/2023
+  TV_Top_TextCenter_Returning_20/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 20/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/20/2023
+      air_date.lte: 12/20/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 21/12/2023
+  TV_Top_TextCenter_Returning_21/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 21/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/21/2023
+      air_date.lte: 12/21/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 22/12/2023
+  TV_Top_TextCenter_Returning_22/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 22/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/22/2023
+      air_date.lte: 12/22/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 23/12/2023
+  TV_Top_TextCenter_Returning_23/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 23/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/23/2023
+      air_date.lte: 12/23/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 24/12/2023
+  TV_Top_TextCenter_Returning_24/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 24/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/24/2023
+      air_date.lte: 12/24/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 25/12/2023
+  TV_Top_TextCenter_Returning_25/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 25/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/25/2023
+      air_date.lte: 12/25/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 26/12/2023
+  TV_Top_TextCenter_Returning_26/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 26/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/26/2023
+      air_date.lte: 12/26/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 27/12/2023
+  TV_Top_TextCenter_Returning_27/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 27/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/27/2023
+      air_date.lte: 12/27/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 28/12/2023
+  TV_Top_TextCenter_Returning_28/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 28/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/28/2023
+      air_date.lte: 12/28/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 29/12/2023
+  TV_Top_TextCenter_Returning_29/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 29/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/29/2023
+      air_date.lte: 12/29/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 30/12/2023
+  TV_Top_TextCenter_Returning_30/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 30/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/30/2023
+      air_date.lte: 12/30/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 31/12/2023
+  TV_Top_TextCenter_Returning_31/12/2023:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 31/12"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 12/31/2023
+      air_date.lte: 12/31/2023
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 01/01/2024
+  TV_Top_TextCenter_Returning_01/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 01/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/01/2024
+      air_date.lte: 01/01/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 02/01/2024
+  TV_Top_TextCenter_Returning_02/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 02/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/02/2024
+      air_date.lte: 01/02/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 03/01/2024
+  TV_Top_TextCenter_Returning_03/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 03/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/03/2024
+      air_date.lte: 01/03/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 04/01/2024
+  TV_Top_TextCenter_Returning_04/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 04/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/04/2024
+      air_date.lte: 01/04/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 05/01/2024
+  TV_Top_TextCenter_Returning_05/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 05/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/05/2024
+      air_date.lte: 01/05/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 06/01/2024
+  TV_Top_TextCenter_Returning_06/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 06/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/06/2024
+      air_date.lte: 01/06/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 07/01/2024
+  TV_Top_TextCenter_Returning_07/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 07/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/07/2024
+      air_date.lte: 01/07/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 08/01/2024
+  TV_Top_TextCenter_Returning_08/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 08/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/08/2024
+      air_date.lte: 01/08/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 09/01/2024
+  TV_Top_TextCenter_Returning_09/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 09/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/09/2024
+      air_date.lte: 01/09/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 10/01/2024
+  TV_Top_TextCenter_Returning_10/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 10/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/10/2024
+      air_date.lte: 01/10/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 11/01/2024
+  TV_Top_TextCenter_Returning_11/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 11/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/11/2024
+      air_date.lte: 01/11/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 12/01/2024
+  TV_Top_TextCenter_Returning_12/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 12/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/12/2024
+      air_date.lte: 01/12/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 13/01/2024
+  TV_Top_TextCenter_Returning_13/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 13/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/13/2024
+      air_date.lte: 01/13/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 14/01/2024
+  TV_Top_TextCenter_Returning_14/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 14/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/14/2024
+      air_date.lte: 01/14/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 15/01/2024
+  TV_Top_TextCenter_Returning_15/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 15/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/15/2024
+      air_date.lte: 01/15/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 16/01/2024
+  TV_Top_TextCenter_Returning_16/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 16/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/16/2024
+      air_date.lte: 01/16/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 17/01/2024
+  TV_Top_TextCenter_Returning_17/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 17/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/17/2024
+      air_date.lte: 01/17/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 18/01/2024
+  TV_Top_TextCenter_Returning_18/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 18/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/18/2024
+      air_date.lte: 01/18/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 19/01/2024
+  TV_Top_TextCenter_Returning_19/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 19/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/19/2024
+      air_date.lte: 01/19/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 20/01/2024
+  TV_Top_TextCenter_Returning_20/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 20/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/20/2024
+      air_date.lte: 01/20/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 21/01/2024
+  TV_Top_TextCenter_Returning_21/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 21/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/21/2024
+      air_date.lte: 01/21/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 22/01/2024
+  TV_Top_TextCenter_Returning_22/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 22/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/22/2024
+      air_date.lte: 01/22/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 23/01/2024
+  TV_Top_TextCenter_Returning_23/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 23/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/23/2024
+      air_date.lte: 01/23/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 24/01/2024
+  TV_Top_TextCenter_Returning_24/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 24/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/24/2024
+      air_date.lte: 01/24/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 25/01/2024
+  TV_Top_TextCenter_Returning_25/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 25/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/25/2024
+      air_date.lte: 01/25/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 26/01/2024
+  TV_Top_TextCenter_Returning_26/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 26/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/26/2024
+      air_date.lte: 01/26/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 27/01/2024
+  TV_Top_TextCenter_Returning_27/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 27/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/27/2024
+      air_date.lte: 01/27/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 28/01/2024
+  TV_Top_TextCenter_Returning_28/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 28/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/28/2024
+      air_date.lte: 01/28/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 29/01/2024
+  TV_Top_TextCenter_Returning_29/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 29/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/29/2024
+      air_date.lte: 01/29/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 30/01/2024
+  TV_Top_TextCenter_Returning_30/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 30/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/30/2024
+      air_date.lte: 01/30/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 31/01/2024
+  TV_Top_TextCenter_Returning_31/01/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 31/01"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 01/31/2024
+      air_date.lte: 01/31/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 01/02/2024
+  TV_Top_TextCenter_Returning_01/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 01/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/01/2024
+      air_date.lte: 02/01/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 02/02/2024
+  TV_Top_TextCenter_Returning_02/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 02/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/02/2024
+      air_date.lte: 02/02/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 03/02/2024
+  TV_Top_TextCenter_Returning_03/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 03/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/03/2024
+      air_date.lte: 02/03/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 04/02/2024
+  TV_Top_TextCenter_Returning_04/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 04/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/04/2024
+      air_date.lte: 02/04/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 05/02/2024
+  TV_Top_TextCenter_Returning_05/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 05/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/05/2024
+      air_date.lte: 02/05/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 06/02/2024
+  TV_Top_TextCenter_Returning_06/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 06/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/06/2024
+      air_date.lte: 02/06/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 07/02/2024
+  TV_Top_TextCenter_Returning_07/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 07/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/07/2024
+      air_date.lte: 02/07/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 08/02/2024
+  TV_Top_TextCenter_Returning_08/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 08/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/08/2024
+      air_date.lte: 02/08/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 09/02/2024
+  TV_Top_TextCenter_Returning_09/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 09/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/09/2024
+      air_date.lte: 02/09/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 10/02/2024
+  TV_Top_TextCenter_Returning_10/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 10/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/10/2024
+      air_date.lte: 02/10/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 11/02/2024
+  TV_Top_TextCenter_Returning_11/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 11/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/11/2024
+      air_date.lte: 02/11/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 12/02/2024
+  TV_Top_TextCenter_Returning_12/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 12/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/12/2024
+      air_date.lte: 02/12/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 13/02/2024
+  TV_Top_TextCenter_Returning_13/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 13/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/13/2024
+      air_date.lte: 02/13/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 14/02/2024
+  TV_Top_TextCenter_Returning_14/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 14/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/14/2024
+      air_date.lte: 02/14/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 15/02/2024
+  TV_Top_TextCenter_Returning_15/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 15/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/15/2024
+      air_date.lte: 02/15/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 16/02/2024
+  TV_Top_TextCenter_Returning_16/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 16/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/16/2024
+      air_date.lte: 02/16/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 17/02/2024
+  TV_Top_TextCenter_Returning_17/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 17/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/17/2024
+      air_date.lte: 02/17/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 18/02/2024
+  TV_Top_TextCenter_Returning_18/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 18/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/18/2024
+      air_date.lte: 02/18/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 19/02/2024
+  TV_Top_TextCenter_Returning_19/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 19/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/19/2024
+      air_date.lte: 02/19/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 20/02/2024
+  TV_Top_TextCenter_Returning_20/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 20/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/20/2024
+      air_date.lte: 02/20/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 21/02/2024
+  TV_Top_TextCenter_Returning_21/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 21/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/21/2024
+      air_date.lte: 02/21/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 22/02/2024
+  TV_Top_TextCenter_Returning_22/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 22/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/22/2024
+      air_date.lte: 02/22/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 23/02/2024
+  TV_Top_TextCenter_Returning_23/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 23/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/23/2024
+      air_date.lte: 02/23/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 24/02/2024
+  TV_Top_TextCenter_Returning_24/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 24/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/24/2024
+      air_date.lte: 02/24/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 25/02/2024
+  TV_Top_TextCenter_Returning_25/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 25/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/25/2024
+      air_date.lte: 02/25/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 26/02/2024
+  TV_Top_TextCenter_Returning_26/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 26/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/26/2024
+      air_date.lte: 02/26/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 27/02/2024
+  TV_Top_TextCenter_Returning_27/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 27/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/27/2024
+      air_date.lte: 02/27/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 28/02/2024
+  TV_Top_TextCenter_Returning_28/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 28/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/28/2024
+      air_date.lte: 02/28/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 29/02/2024
+  TV_Top_TextCenter_Returning_29/02/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 29/02"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 02/29/2024
+      air_date.lte: 02/29/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 01/03/2024
+  TV_Top_TextCenter_Returning_01/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 01/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/01/2024
+      air_date.lte: 03/01/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 02/03/2024
+  TV_Top_TextCenter_Returning_02/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 02/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/02/2024
+      air_date.lte: 03/02/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 03/03/2024
+  TV_Top_TextCenter_Returning_03/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 03/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/03/2024
+      air_date.lte: 03/03/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 04/03/2024
+  TV_Top_TextCenter_Returning_04/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 04/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/04/2024
+      air_date.lte: 03/04/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 05/03/2024
+  TV_Top_TextCenter_Returning_05/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 05/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/05/2024
+      air_date.lte: 03/05/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 06/03/2024
+  TV_Top_TextCenter_Returning_06/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 06/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/06/2024
+      air_date.lte: 03/06/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 07/03/2024
+  TV_Top_TextCenter_Returning_07/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 07/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/07/2024
+      air_date.lte: 03/07/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 08/03/2024
+  TV_Top_TextCenter_Returning_08/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 08/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/08/2024
+      air_date.lte: 03/08/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 09/03/2024
+  TV_Top_TextCenter_Returning_09/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 09/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/09/2024
+      air_date.lte: 03/09/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 10/03/2024
+  TV_Top_TextCenter_Returning_10/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 10/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/10/2024
+      air_date.lte: 03/10/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 11/03/2024
+  TV_Top_TextCenter_Returning_11/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 11/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/11/2024
+      air_date.lte: 03/11/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 12/03/2024
+  TV_Top_TextCenter_Returning_12/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 12/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/12/2024
+      air_date.lte: 03/12/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 13/03/2024
+  TV_Top_TextCenter_Returning_13/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 13/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/13/2024
+      air_date.lte: 03/13/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 14/03/2024
+  TV_Top_TextCenter_Returning_14/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 14/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/14/2024
+      air_date.lte: 03/14/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023
+
+# RETURNING 15/03/2024
+  TV_Top_TextCenter_Returning_15/03/2024:
+    template:
+    - name: TV_Top_TextCenter
+      weight: 35
+      text: "RETURNING 15/03"
+      color: "#FFFFFF"
+      back_color: "#81007F"
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0
+    tmdb_discover:
+      air_date.gte: 03/15/2024
+      air_date.lte: 03/15/2024
+      with_status: 0
+      limit: 500
+    filters:
+      last_episode_aired.before: 11/02/2023

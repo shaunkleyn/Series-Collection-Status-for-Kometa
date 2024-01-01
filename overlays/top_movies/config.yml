@@ -1,0 +1,62 @@
+
+
+overlays:
+  PLEXAIR1:
+    tautulli_popular:
+      list_days: 30
+      list_size: 30
+      list_buffer: 30
+    tautulli_watched:
+      list_days: 30
+      list_size: 30
+      list_buffer: 30
+    #overlay: TMDB
+    overlay:
+      name: TOP10
+      horizontal_offset: 0
+      horizontal_align: right
+      vertical_offset: 0
+      vertical_align: bottom
+
+  #overlay: TMDB
+  # TMDB:
+  #   trakt_trending: 40
+  #   tmdb_trending_daily: 40
+  #   tmdb_trending_weekly: 40
+
+  IMDB1:
+    imdb_chart: top_movies
+
+  TMDB1:
+    trakt_watched_yearly: 250
+
+  TOP10:
+    mdblist_list:
+      url:  https://mdblist.com/lists/hdlists/top-ten-pirated-movies-of-the-week-torrent-freak-com
+      limit: 10
+    sync_mode: sync
+    collection_order: custom
+    overlay:
+      name: TOP10
+      horizontal_offset: 0
+      horizontal_align: right
+      vertical_offset: 0
+      vertical_align: bottom
+
+  top10-1:
+    trakt_list:
+      - https://trakt.tv/users/nads/lists/top10movies?sort=rank,asc
+    overlay:
+      name: top10-1
+      horizontal_offset: 0
+      horizontal_align: right
+      vertical_offset: 0
+      vertical_align: bottom
+
+
+
+
+
+
+
+

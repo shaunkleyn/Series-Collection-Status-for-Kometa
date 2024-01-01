@@ -1,0 +1,8 @@
+collections:
+  This month in history:
+    trakt_list: https://trakt.tv/users/shaunkleyn/lists/in-history-Test-Shows
+    visible_home: true
+    visible_shared: true
+    collection_order: custom
+    sync_mode: sync
+    url_poster: "https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager-Images/master/chart/This%20Month%20in%20History.jpg"

@@ -1,0 +1,26 @@
+
+templates:
+  # TEXT CENTER
+  TV_Top_TextCenter:
+    sync_mode: sync
+    builder_level: show
+    overlay:
+      name: text(<<text>>)
+      horizontal_offset: <<horizontal_offset>>
+      horizontal_align: <<horizontal_align>>
+      vertical_offset: <<vertical_offset>>
+      vertical_align: <<vertical_align>>
+      font: config/fonts/Juventus-Fans-Bold.ttf
+      font_size: 70
+      font_color: <<color>>
+      group: TV_Top_TextCenter
+      weight: <<weight>>
+      back_color: <<back_color>>
+      back_width: 1920
+      back_height: 90
+
+    default:
+      horizontal_align: center
+      vertical_align: top
+      horizontal_offset: 0
+      vertical_offset: 0

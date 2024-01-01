@@ -1,0 +1,114 @@
+templates:
+  custom_rating_template:
+    #name: custom_rating_template
+    default:
+      group: rating_text
+      rating_type: critic_rating
+      #font: fonts/Roboto-Bold.ttf
+      font_color: "#000"
+      font: fonts/Roboto-Bold.ttf
+      horizontal_align: right
+      back_width: 185
+      back_height: 130
+      back_radius: 20
+      weight: 20
+    overlay:
+      name: text(<<text>>)
+      weight: <<weight>>
+      group: <<group>>
+      font_color: <<font_color>>
+      back_color: <<back_color>>
+      horizontal_offset: 35
+      horizontal_align: <<horizontal_align>>
+      vertical_offset: 35
+      vertical_align: bottom
+      #font: config/fonts/Poppins-Bold.ttf
+      font: <<font>>
+      back_radius: <<back_radius>>
+      #font_size: 90
+      #back_width: 165
+      #back_height: 120
+      font_size: 90
+      back_width: <<back_width>>
+      back_height: <<back_height>>
+    plex_search:
+      all:
+        critic_rating.gte: <<from_rating>>
+        critic_rating.lte: <<to_rating>>
+      
+overlays:
+  rating_highest:
+    template: 
+    - name: custom_rating_template
+      font_color: "#74AB61"
+      back_color: "#103022"
+      from_rating: 8.0
+      to_rating: 10
+      
+  rating_high: #GREEN
+    template: 
+    - name: custom_rating_template
+      #text: critic_rating
+      text: ★★★★☆
+      font: fonts/Inter-Regular.ttf
+      back_radius: 100
+      back_width: 500
+      back_height: 110
+      font_color: "#000000BB" #"#C3F0B8"
+      back_color: "#77a4ff" #"#4db288" #"#4c9539"
+      from_rating: 7.0
+      to_rating: 7.9
+        
+  rating_mid: #ORANGE
+    template: 
+    - name: custom_rating_template
+      text: ★★★☆☆
+      font: fonts/Inter-Regular.ttf
+      back_radius: 100
+      back_width: 100
+      back_height: 110
+      weight: 550
+      font_color: "#000000BB" #"#7A4300"
+      back_color: "#e5a00d"
+      from_rating: 2.0
+      to_rating: 6.9
+
+  rating_mid_image: #ORANGE
+    template: 
+    - name: custom_rating_template
+      weight: 500
+      group: rating_mid_image
+      file: config/overlays/ratings/rating-2.5.png
+      from_rating: 2.0
+      to_rating: 6.9
+      addon_position: left
+      addon_offset: 25
+      back_color: "#e5a00d"
+
+#  rating_mid1: #ORANGE
+#    template: 
+#    - name: custom_rating_template
+#      text: ★★☆☆☆
+#      font: fonts/Inter-Regular.ttf
+#      back_radius: 100
+#      back_width: 500
+#      back_height: 110
+#      font_color: "#000000BB" #"#7A4300"
+#      back_color: "#e5a00dbb"
+#      from_rating: 2.0
+#      to_rating: 3.9
+
+  rating_low: #RED
+    template: 
+    - name: custom_rating_template
+      #text: critic_rating
+      text: ★☆☆☆☆
+      font: fonts/Inter-Regular.ttf
+      back_radius: 100
+      back_width: 500
+      back_height: 110
+      font_color: "#ffffffde" #"#FFB3C0"
+      back_color: "#C72C0C" #"#cc0000"
+      from_rating: 0.0
+      to_rating: 1.9
+        

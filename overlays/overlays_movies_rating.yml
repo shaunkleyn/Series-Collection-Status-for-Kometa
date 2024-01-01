@@ -1,0 +1,160 @@
+templates:
+  custom_rating_template:
+    default:
+      group: rating_text
+      rating_type: audience
+      font: config/fonts/Poppins-Bold.ttf
+      horizontal_align: right
+      back_width: 150
+      back_radius: 20
+      vertical_align: bottom
+      font_size: 80
+      font_color: "#000000cc" #"#C3F0B8"
+      back_color: "#e5a00d" #"#77a4ff" #"#4db288" #"#4c9539"
+      horizontal_offset: 540
+      vertical_offset: 20
+      back_height: 120
+      weight: 200
+    overlay:
+      name: text(<<text>>)
+      weight: <<weight>>
+      font_color: <<font_color>>
+      back_color: <<back_color>>
+      horizontal_offset: <<horizontal_offset>>
+      horizontal_align: <<horizontal_align>>
+      vertical_offset: <<vertical_offset>>
+      vertical_align: <<vertical_align>>
+      font: <<font>>
+      back_radius: <<back_radius>>
+      font_size: <<font_size>>
+      back_width: <<back_width>>
+      back_height: <<back_height>>
+      rating_type: <<rating_type>>_rating
+    plex_search:
+      all:
+        <<rating_type>>_rating.gte: <<from_rating>>
+        <<rating_type>>_rating.lte: <<to_rating>>
+
+
+  custom_rating_template_stars:
+    template: custom_rating_template
+    default:
+      group: rating_text
+      rating_type: audience
+      font: fonts/Inter-Light.ttf
+      vertical_align: bottom
+      back_radius: 20
+      back_width: 520
+      back_height: 120
+      font_size: 90
+      font_color: "#e5a00d" #"#7A4300"
+      back_color: "#000000cc"
+      horizontal_align: right
+      horizontal_offset: 20
+      vertical_offset: 20
+      weight: 200
+    overlay:
+      name: text(<<text>>)
+      weight: <<weight>>
+      font_color: <<font_color>>
+      back_color: <<back_color>>
+      horizontal_offset: <<horizontal_offset>>
+      horizontal_align: <<horizontal_align>>
+      vertical_offset: <<vertical_offset>>
+      vertical_align: <<vertical_align>>
+      # rating_type: <<rating_type>>
+      #font: config/fonts/Poppins-Bold.ttf
+      font: <<font>>
+      back_radius: <<back_radius>>
+      #font_size: 90
+      #back_width: 165
+      #back_height: 120
+      font_size: <<font_size>>
+      back_width: <<back_width>>
+      back_height: <<back_height>>
+      rating_type: <<rating_type>>_rating
+    plex_search:
+      all:
+        <<rating_type>>_rating.gte: <<from_rating>>
+        <<rating_type>>_rating.lte: <<to_rating>>
+      
+overlays:
+  rating_5:
+    template: 
+    - name: custom_rating_template
+      font_color: "#74AB61"
+      back_color: "#103022"
+      from_rating: 9
+      to_rating: 10
+  rating_5_sstars: #ORANGE
+    template: 
+    - name: custom_rating_template_stars
+      text: ★★★★★
+      from_rating: 9
+      to_rating: 10
+      
+  rating_4: #GREEN
+    template: 
+    - name: custom_rating_template
+      text: audience_rating
+      from_rating: 7.0
+      to_rating: 8.9  
+  rating_4_stars: #ORANGE
+    template: 
+    - name: custom_rating_template_stars
+      text: ★★★★☆
+      from_rating: 7.0
+      to_rating: 8.9 
+
+  rating_3: #GREEN
+    template: 
+    - name: custom_rating_template
+      text: audience_rating
+      from_rating: 5.0
+      to_rating: 6.9 
+  rating_3_stars: #ORANGE
+    template: 
+    - name: custom_rating_template_stars
+      text: ★★★☆☆
+      from_rating: 5.0
+      to_rating: 6.9 
+
+  rating_2: #GREEN
+    template: 
+    - name: custom_rating_template
+      text: audience_rating
+      from_rating: 3.0
+      to_rating: 4.9 
+  rating_2_stars: #ORANGE
+    template: 
+    - name: custom_rating_template_stars
+      text: ★★☆☆☆
+      from_rating: 3.0
+      to_rating: 4.9 
+
+  rating_1: #GREEN
+    template: 
+    - name: custom_rating_template
+      text: audience_rating
+      from_rating: 1.0
+      to_rating: 2.9 
+  rating_1_stars: #ORANGE
+    template: 
+    - name: custom_rating_template_stars
+      text: ★☆☆☆☆
+      from_rating: 1.0
+      to_rating: 2.9 
+
+  rating_0: #GREEN
+    template: 
+    - name: custom_rating_template
+      text: audience_rating
+      from_rating: 0.0
+      to_rating: 0.9 
+  rating_0_stars: #ORANGE
+    template: 
+    - name: custom_rating_template_stars
+      text: ☆☆☆☆☆
+      from_rating: 0.0
+      to_rating: 0.9 
+      

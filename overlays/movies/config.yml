@@ -1,0 +1,108 @@
+external_templates:
+  pmm: templates
+  template_variables:
+    default:
+      key: <<overlay_name>>
+      standard_value: 305
+      horizontal_align: left
+      vertical_align: bottom
+    conditionals:
+      back_height:
+        default: 105
+        # conditions:
+        #   - style: standard
+        #     value: <<standard_value>>
+      vertical_offset:
+        default: 15
+        conditions:
+          - vertical_align.exists: false
+            value: 510
+          - vertical_align: center
+            value: 0
+          - vertical_align: top
+            value: 15
+          - vertical_align: bottom
+            value: 30
+      horizontal_offset:
+        default: 15
+        conditions:
+          - horizontal_align: center
+            value: 0
+          - horizontal_align: [left, right]
+            value: 15
+      pmm:
+        conditions:
+          - file.exists: false
+            file_<<key>>.exists: false
+            url.exists: false
+            url_<<key>>.exists: false
+            git.exists: false
+            git_<<key>>.exists: false
+            repo.exists: false
+            repo_<<key>>.exists: false
+            value: top_movies/<<key>>
+    allowed_libraries: show
+    group: top_movies
+    vertical_offset: 15
+    back_color: "#00000099"
+    back_width: 305
+
+templates:
+  top_movies:
+    default:
+      key: <<overlay_name>>
+      search: <<key>>
+    ignore_blank_results: true
+    plex_search:
+      validate: false
+      any:
+        network: <<search>>
+
+overlays:
+  PLEXAIR1:
+    template: 
+      name: top_movies
+    tautulli_popular:
+      list_days: 30
+      list_size: 30
+      list_buffer: 30
+    tautulli_watched:
+      list_days: 30
+      list_size: 30
+      list_buffer: 30
+    overlay: TMDB
+
+  overlay: TMDB
+  TMDB:
+    template: 
+      name: top_movies
+    trakt_trending: 40
+    tmdb_trending_daily: 40
+    tmdb_trending_weekly: 40
+
+  IMDB1:
+    imdb_chart: top_movies
+
+  TMDB1:
+    trakt_watched_yearly: 250
+
+  TOP10:
+    template: 
+      name: top_movies
+    mdblist_list:
+      url:  https://mdblist.com/lists/hdlists/top-ten-pirated-movies-of-the-week-torrent-freak-com
+      limit: 10
+    sync_mode: sync
+    collection_order: custom
+
+
+  top10-1:
+    trakt_list:
+      - https://trakt.tv/users/nads/lists/top10movies?sort=rank,asc
+
+
+
+
+
+
+

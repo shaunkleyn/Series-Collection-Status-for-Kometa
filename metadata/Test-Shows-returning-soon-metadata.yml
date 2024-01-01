@@ -1,0 +1,10 @@
+
+collections:
+  Returning Soon:
+    trakt_list: https://trakt.tv/users/shaunkleyn/lists/returning-soon-Test-Shows
+    url_poster: https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager-Images/master/chart/Returning%20Soon.jpg
+    collection_order: custom
+    visible_home: true
+    visible_shared: true
+    sync_mode: sync
+    

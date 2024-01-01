@@ -1,0 +1,51 @@
+overlays:
+
+
+  Recently Aired1:
+    plex_search:
+      all:
+        episode_air_date: 7
+
+
+  BRANDNEW:
+
+    trakt_list:
+      - https://trakt.tv/users/garycrawfordgc/lists/latest-tv-shows?sort=released,asc
+
+  PLEXAIR1:
+
+    tautulli_popular:
+      list_days: 30
+      list_size: 30
+      list_buffer: 30
+    tautulli_watched:
+      list_days: 30
+      list_size: 30
+      list_buffer: 30
+
+
+  overlay: TMDB
+
+  TMDB:
+
+    trakt_trending: 40
+    tmdb_trending_daily: 40
+    tmdb_trending_weekly: 40
+
+  TMDB1:
+    trakt_watched_yearly: 250
+
+
+
+
+  top10-1:
+    trakt_chart:
+      chart: watched
+      limit: 10
+
+
+    
+
+
+    
+

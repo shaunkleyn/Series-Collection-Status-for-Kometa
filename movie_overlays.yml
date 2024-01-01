@@ -1,0 +1,146 @@
+templates:
+
+  Audience_Rating:                                                               #Audience Rating Text (IMDB Rating)
+    optional:
+      - overlay_level
+    default:
+      rating_type: audience_rating
+    collection_level: <<overlay_level>>
+    overlay:
+      name: text(<<rating_type>>)
+      queue: Rating_Queue_Text
+      weight: <<weight>>
+      font: fonts/Roboto-Bold.ttf
+      font_size: 80
+      font_color: "#000000BB"
+
+  rating-image:                                                                    #MDBList Rating Logo
+    optional:
+      - overlay_level
+    default:
+      overlay: <<overlay_name>>
+    collection_level: <<overlay_level>>
+    overlay:
+      file: config/overlays/ratings/<<overlay_name>>_md.png
+      name: <<overlay_name>>
+      queue: Rating_Queue_Logo
+      weight: <<weight>>
+
+
+queues:
+  Rating_Queue_Logo:
+    - horizontal_offset: 30
+      horizontal_align: right
+      vertical_offset: 30
+      vertical_align: bottom
+  Rating_Queue_Text:
+    - horizontal_offset: 505
+      horizontal_align: right
+      vertical_offset: 65
+      vertical_align: bottom
+
+overlays:
+  rating-0_0:
+    template:
+      - name: rating-image
+        weight: 100
+    plex_search:
+      all:
+        user_rating.gte: 0.0
+        user_rating.lte: 0.1
+  rating-0_5:
+    template:
+      - name: rating-image
+        weight: 100
+    plex_search:
+      all:
+        user_rating.gte: 0.2
+        user_rating.lte: 0.9
+  rating-1_0:
+    template:
+      - name: rating-image
+        weight: 100
+    plex_search:
+      all:
+        user_rating.gte: 1.0
+        user_rating.lte: 1.9
+  rating-1_5:
+    template:
+      - name: rating-image
+        weight: 100
+    plex_search:
+      all:
+        user_rating.gte: 2.0
+        user_rating.lte: 2.9
+
+  rating-2_0:
+    template:
+      - name: rating-image
+        weight: 100
+    plex_search:
+      all:
+        user_rating.gte: 3.0
+        user_rating.lte: 3.9
+  rating-2_5:
+    template:
+      - name: rating-image
+        weight: 100
+    plex_search:
+      all:
+        user_rating.gte: 4.0
+        user_rating.lte: 4.9
+  
+  rating-3_0:
+    template:
+      - name: rating-image
+        weight: 100
+    plex_search:
+      all:
+        user_rating.gte: 5.0
+        user_rating.lte: 5.9
+  rating-3_5:
+    template:
+      - name: rating-image
+        weight: 100
+    plex_search:
+      all:
+        user_rating.gte: 6.0
+        user_rating.lte: 6.9
+
+  rating-4_0:
+    template:
+      - name: rating-image
+        weight: 100
+    plex_search:
+      all:
+        user_rating.gte: 7.0
+        user_rating.lte: 7.9
+  rating-4_5:
+    template:
+      - name: rating-image
+        weight: 100
+    plex_search:
+      all:
+        user_rating.gte: 8.0
+        user_rating.lte: 8.9
+
+  rating-5_0:
+    template:
+      - name: rating-image
+        weight: 100
+    plex_search:
+      all:
+        user_rating.gte: 9.0
+        user_rating.lte: 10
+        
+  audience_rating:
+    template:
+      name: Audience_Rating
+      weight: 110
+    plex_search:
+      all:
+        audience_rating.gte: 0.1
+        audience_rating.lte: 10
+
+
+  

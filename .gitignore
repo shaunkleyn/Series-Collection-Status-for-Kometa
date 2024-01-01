@@ -1,2 +1,4 @@
 .vscode/settings.json
-set-availability-labels.ini
+set-availability-labels.ini/
+logs/*
+overlays/* Original Posters/*.jpg

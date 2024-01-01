@@ -1,0 +1,7 @@
+collections:
+  Recent Comedy:
+    plex_search:
+      all:
+        genre: Comedy
+        year.gte: 2012
+      limit: 20
