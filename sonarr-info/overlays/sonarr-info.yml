@@ -1,0 +1,600 @@
+
+# templates:
+#   bg:
+#     default:
+#       horizontal_offset: 10
+#       horizontal_align: left
+#       vertical_offset: 10
+#       vertical_align: top
+
+#   background:
+#     overlay:
+#       name: backdrop
+#       back_color: '#4E4E4EB3'
+#       back_width: 1000
+#       back_height: 100
+#       horizontal_align: left
+#       horizontal_offset: 0
+#       vertical_align: bottom
+#       vertical_offset: 0
+#       weight: 300
+#       group: 'bg'
+#     plex_all: true
+
+#       # queue: background_queue
+#   progress:
+#     default:
+#       back_color: '#B41414'
+#     overlay:
+#       name: backdrop
+#       back_color: <<back_color>>
+#       back_width: <<width>>
+#       back_height: 100
+#       horizontal_align: left
+#       horizontal_offset: 0
+#       vertical_align: bottom
+#       vertical_offset: 0
+#       weight: 310
+#       group: 'bar'
+#     tvdb_show: <<tvdb_show>>
+#     imdb_id: <<imdb_id>>
+#     #plex_all: true
+
+#   progress_text:
+#     default:
+#       text: <<key>>
+#     overlay:
+#       name: text(<<text>>)
+#       font_size: 70
+#       font_color: '#FDFDFD'
+#       back_width: 1000
+#       back_height: 100
+#       text_align: center
+#       horizontal_align: left
+#       horizontal_offset: 0
+#       vertical_align: bottom
+#       vertical_offset: 0
+#       weight: 320
+#       group: 'progress'
+#     tvdb_show: <<tvdb_show>>
+#     imdb_id: <<imdb_id>>
+
+# queues:
+#   background_queue:
+#     - horizontal_offset: 0        # This is the first position
+#       horizontal_align: center
+#       vertical_offset: 0
+#       vertical_align: bottom
+#   progress_queue:
+#     - horizontal_offset: 0        # This is the first position
+#       horizontal_align: center
+#       vertical_offset: 0
+#       vertical_align: top
+# overlays:
+#   background:
+#     template:
+#     - name: background
+
+    #plex_all: true
+
+  # La Brea: 
+  #   template: 
+  #     - name: progress
+  #   # tvdb_show: [275245]
+  #   tvdb_show: [395029, 275245]
+  #   imdb_id: ['tt11640018']
+  # text:
+  #   template:
+  #     - name: progress_text
+  #       text: '4 / 90'
+  #   tvdb_show: [395029]
+  #   imdb_id: ['tt11640018']
+
+  # show_1: 
+  #   template: { name: progress, width: 200, tvdb_show: [395029], imdb_id: ['tt11640018'] }
+  # show_1_text: 
+  #   template: { name: progress_text, text: 'ffff', tvdb_show: [395029], imdb_id: ['tt11640018'] }
+
+  # show_2: 
+  #   template: { name: progress, width: 600, back_color: "#5703E8", tvdb_show: [275245], imdb_id: ['tt11640018'] }
+  # show_2_text: 
+  #   template: { name: progress_text, text: '11-11', tvdb_show: [275245], imdb_id: ['tt11640018'] }   
+    # bg_overlay: [ template : {name: progress_text, text: 'xxxxx'}, template : {name: progress}]
+    
+    # bg_overlays_2:
+    #   template:
+    #     - background
+    #     - progress
+    #     - progress_text
+    #   template_variables:
+    #     text: 'yyyy'
+    #     plex_all: true
+
+
+
+
+
+
+
+
+
+
+# templates:
+#   progress_background:
+#     overlay:
+#       name: backdrop
+#       back_color: '#4E4E4EB3'
+#       back_width: 1000
+#       back_height: 100
+#       horizontal_align: left
+#       horizontal_offset: 0
+#       vertical_align: bottom
+#       vertical_offset: 0
+#       weight: 300
+#       group: background
+#     plex-all: true
+
+#   progress_bar:
+#     default:
+#       back_color: '#B41414'
+#     overlay:
+#       name: backdrop
+#       back_color: <<back_color>>
+#       back_width: <<width>>
+#       back_height: 100
+#       horizontal_align: left
+#       vertical_align: bottom
+#       horizontal_offset: 0
+#       vertical_offset: 0
+#       weight: 310
+#       group: progress_bar
+#     tvdb_show: <<tvdb_show>>
+#     imdb_id: <<imdb_id>>
+
+#   progress_text:
+#     default:
+#       text: '-'
+#     overlay:
+#       name: text(<<text>>)
+#       font_size: 70
+#       text_align: center
+#       back_width: 1000
+#       back_height: 100
+#       horizontal_align: left
+#       vertical_align: bottom
+#       horizontal_offset: 0
+#       vertical_offset: 0
+#       weight: 320
+#       group: progress_text
+#     tvdb_show: <<tvdb_show>>
+#     imdb_id: <<imdb_id>>
+# overlays:
+#   bg:
+#     template:
+#     - name: progress_background
+#     plex-all: true
+#   la-brea_2021:
+#     template:
+#     - name: progress_bar
+#       width: 1000
+#     tvdb_show: 395029
+#     imdb_id: tt11640018
+#   la-brea_2021_text:
+#     template:
+#     - name: progress_text
+#       text: '24/24'
+#     tvdb_show: 395029
+#     imdb_id: tt11640018
+#   a-crime-to-remember_2013:
+#     template:
+#     - name: progress_bar
+#       width: 1000
+#     tvdb_show: 275245
+#     imdb_id: tt3044834
+#   a-crime-to-remember_2013_text:
+#     template:
+#     - name: progress_text
+#       text: '38/38'
+#     tvdb_show: 275245
+#     imdb_id: tt3044834
+#   how-the-universe-works_2010:
+#     template:
+#     - name: progress_bar
+#       width: 881
+#     tvdb_show: 159651
+#     imdb_id: tt1832668
+#   how-the-universe-works_2010_text:
+#     template:
+#     - name: progress_text
+#       text: '82/93'
+#     tvdb_show: 159651
+#     imdb_id: tt1832668
+#   rick-and-morty_2013:
+#     template:
+#     - name: progress_bar
+#       width: 859
+#     tvdb_show: 275274
+#     imdb_id: tt2861424
+#   rick-and-morty_2013_text:
+#     template:
+#     - name: progress_text
+#       text: '61/71'
+#     tvdb_show: 275274
+#     imdb_id: tt2861424
+#   signs-of-a-psychopath_2020:
+#     template:
+#     - name: progress_bar
+#       width: 1000
+#     tvdb_show: 387339
+#     imdb_id: tt13530014
+#   signs-of-a-psychopath_2020_text:
+#     template:
+#     - name: progress_text
+#       text: '52/52'
+#     tvdb_show: 387339
+#     imdb_id: tt13530014
+#   the-unexplained-2012_2012:
+#     template:
+#     - name: progress_bar
+#       width: 1000
+#     tvdb_show: 261421
+#     imdb_id: tt2361182
+#   the-unexplained-2012_2012_text:
+#     template:
+#     - name: progress_text
+#       text: '14/14'
+#     tvdb_show: 261421
+#     imdb_id: tt2361182
+
+
+# templates:
+#   progress_background:
+#     overlay:
+#       name: backdrop
+#       back_color: '#4E4E4EB3'
+#       back_width: 1000
+#       back_height: 120
+#       horizontal_align: left
+#       horizontal_offset: 0
+#       vertical_align: bottom
+#       vertical_offset: 0
+#       weight: 510
+#       group: bg
+#     plex_all: true
+#   progress_bar:
+#     default:
+#       back_color: '#670000'
+#     overlay:
+#       name: backdrop
+#       back_color: <<back_color>>
+#       back_width: <<width>>
+#       back_height: 120
+#       horizontal_align: left
+#       horizontal_offset: 0
+#       vertical_align: bottom
+#       vertical_offset: 0
+#       weight: 310
+#     tvdb_show: <<tvdb_show>>
+#     imdb_id: <<imdb_id>>
+#   progress_text:
+#     default:
+#       text: '-'
+#     overlay:
+#       name: text(<<text>>)
+#       font_size: 80
+#       font: config/fonts/Poppins-Bold.ttf
+#       text_align: center
+#       back_width: 1000
+#       back_height: 120
+#       horizontal_align: left
+#       vertical_align: bottom
+#       horizontal_offset: 0
+#       vertical_offset: 0
+#       weight: 320
+#     tvdb_show: <<tvdb_show>>
+#     imdb_id: <<imdb_id>>
+#   monitor_status:
+#     overlay:
+#       name: new-shadow-256
+#       text_align: center
+#       horizontal_align: left
+#       vertical_align: top
+#       horizontal_offset: 10
+#       vertical_offset: 10
+#       weight: 330
+#     tvdb_show: <<tvdb_show>>
+#     imdb_id: <<imdb_id>>
+#   new_status:
+#     overlay:
+#       name: new-256
+#       text_align: center
+#       horizontal_align: left
+#       vertical_align: top
+#       horizontal_offset: 0
+#       vertical_offset: 0
+#       weight: 330
+#     tvdb_show: <<tvdb_show>>
+#     imdb_id: <<imdb_id>>
+# overlays:
+#   progress_bg:
+#     template:
+#     - name: progress_background
+#   la-brea_2021:
+#     template:
+#     - name: progress_bar
+#       width: 1000
+#     tvdb_show: 395029
+#     imdb_id: tt11640018
+#   la-brea_2021_text:
+#     template:
+#     - name: progress_text
+#       text: 24 / 24
+#     tvdb_show: 395029
+#     imdb_id: tt11640018
+#   la-brea_2021_monitor:
+#     template:
+#     - name: monitor_status
+#     tvdb_show: 395029
+#     imdb_id: tt11640018
+#   la-brea_2021_new:
+#     template:
+#     - name: new_status
+#     tvdb_show: 395029
+#     imdb_id: tt11640018
+#   a-crime-to-remember_2013:
+#     template:
+#     - name: progress_bar
+#       width: 1000
+#     tvdb_show: 275245
+#     imdb_id: tt3044834
+#   a-crime-to-remember_2013_text:
+#     template:
+#     - name: progress_text
+#       text: 38 / 38
+#     tvdb_show: 275245
+#     imdb_id: tt3044834
+#   how-the-universe-works_2010:
+#     template:
+#     - name: progress_bar
+#       width: 881
+#     tvdb_show: 159651
+#     imdb_id: tt1832668
+#   how-the-universe-works_2010_text:
+#     template:
+#     - name: progress_text
+#       text: 82 / 93
+#     tvdb_show: 159651
+#     imdb_id: tt1832668
+#   rick-and-morty_2013:
+#     template:
+#     - name: progress_bar
+#       width: 859
+#     tvdb_show: 275274
+#     imdb_id: tt2861424
+#   rick-and-morty_2013_text:
+#     template:
+#     - name: progress_text
+#       text: 61 / 71
+#     tvdb_show: 275274
+#     imdb_id: tt2861424
+#   signs-of-a-psychopath_2020:
+#     template:
+#     - name: progress_bar
+#       width: 1000
+#     tvdb_show: 387339
+#     imdb_id: tt13530014
+#   signs-of-a-psychopath_2020_text:
+#     template:
+#     - name: progress_text
+#       text: 52 / 52
+#     tvdb_show: 387339
+#     imdb_id: tt13530014
+#   the-unexplained-2012_2012:
+#     template:
+#     - name: progress_bar
+#       width: 1000
+#     tvdb_show: 261421
+#     imdb_id: tt2361182
+#   the-unexplained-2012_2012_text:
+#     template:
+#     - name: progress_text
+#       text: 14 / 14
+#     tvdb_show: 261421
+#     imdb_id: tt2361182
+
+templates:
+  progress_background:
+    overlay:
+      name: backdrop
+      back_color: '#242424F1'
+      back_width: 1000
+      back_height: 125
+      horizontal_align: left
+      horizontal_offset: 0
+      vertical_align: bottom
+      vertical_offset: 0
+      weight: 510
+      group: bg
+    plex_all: true
+  progress_bar:
+    default:
+      back_color: '#006718'
+    overlay:
+      name: backdrop
+      back_color: <<back_color>>
+      back_width: <<width>>
+      back_height: 125
+      horizontal_align: left
+      horizontal_offset: 0
+      vertical_align: bottom
+      vertical_offset: 0
+      weight: 310
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+  progress_text:
+    default:
+      text: '-'
+    overlay:
+      name: text(<<text>>)
+      font_size: 80
+      text_align: center
+      back_width: 1000
+      back_height: 125
+      horizontal_align: left
+      vertical_align: bottom
+      horizontal_offset: 0
+      vertical_offset: 0
+      weight: 320
+      stroke_width: 5
+      stroke_color: "#00000045"
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+  new_status_shadow:
+    overlay:
+      name: <<image>>
+      text_align: center
+      horizontal_align: left
+      vertical_align: top
+      horizontal_offset: 10
+      vertical_offset: 10
+      weight: 330
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+  new_status:
+    overlay:
+      name: <<image>>
+      text_align: center
+      horizontal_align: left
+      vertical_align: top
+      horizontal_offset: 10
+      vertical_offset: 10
+      weight: 330
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+  monitored_status:
+    overlay:
+      name: <<image>>
+      text_align: center
+      horizontal_align: left
+      vertical_align: bottom
+      horizontal_offset: 25
+      vertical_offset: 0
+      weight: 330
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+overlays:
+  progress_bg:
+    template:
+    - name: progress_background
+  la-brea_2021:
+    template:
+    - name: progress_bar
+      width: 1000
+      back_color: '#003E67'
+    tvdb_show: 395029
+    imdb_id: tt11640018
+  la-brea_2021_text:
+    template:
+    - name: progress_text
+      text: 24 / 24 
+    tvdb_show: 395029
+    imdb_id: tt11640018
+  la-brea_2021_monitored_status:
+    template:
+    - name: monitored_status
+      image: monitored
+    tvdb_show: 395029
+    imdb_id: tt11640018
+  a-crime-to-remember_2013:
+    template:
+    - name: progress_bar
+      width: 1000
+    tvdb_show: 275245
+    imdb_id: tt3044834
+  a-crime-to-remember_2013_text:
+    template:
+    - name: progress_text
+      text: 38 / 38
+    tvdb_show: 275245
+    imdb_id: tt3044834
+  a-crime-to-remember_2013_monitored_status:
+    template:
+    - name: monitored_status
+      image: monitored
+    tvdb_show: 275245
+    imdb_id: tt3044834
+  how-the-universe-works_2010:
+    template:
+    - name: progress_bar
+      width: 881
+      back_color: '#670000'
+    tvdb_show: 159651
+    imdb_id: tt1832668
+  how-the-universe-works_2010_text:
+    template:
+    - name: progress_text
+      text: 82 / 93
+    tvdb_show: 159651
+    imdb_id: tt1832668
+  how-the-universe-works_2010_monitored_status:
+    template:
+    - name: monitored_status
+      image: monitored
+    tvdb_show: 159651
+    imdb_id: tt1832668
+  rick-and-morty_2013:
+    template:
+    - name: progress_bar
+      width: 859
+      back_color: '#670000'
+    tvdb_show: 275274
+    imdb_id: tt2861424
+  rick-and-morty_2013_text:
+    template:
+    - name: progress_text
+      text: 61 / 71
+    tvdb_show: 275274
+    imdb_id: tt2861424
+  rick-and-morty_2013_monitored_status:
+    template:
+    - name: monitored_status
+      image: monitored
+    tvdb_show: 275274
+    imdb_id: tt2861424
+  signs-of-a-psychopath_2020:
+    template:
+    - name: progress_bar
+      width: 1000
+      back_color: '#003E67'
+    tvdb_show: 387339
+    imdb_id: tt13530014
+  signs-of-a-psychopath_2020_text:
+    template:
+    - name: progress_text
+      text: 52 / 52
+    tvdb_show: 387339
+    imdb_id: tt13530014
+  signs-of-a-psychopath_2020_monitored_status:
+    template:
+    - name: monitored_status
+      image: monitored
+    tvdb_show: 387339
+    imdb_id: tt13530014
+  the-unexplained-2012_2012:
+    template:
+    - name: progress_bar
+      width: 1000
+    tvdb_show: 261421
+    imdb_id: tt2361182
+  the-unexplained-2012_2012_text:
+    template:
+    - name: progress_text
+      text: 14 / 14
+    tvdb_show: 261421
+    imdb_id: tt2361182
+  the-unexplained-2012_2012_monitored_status:
+    template:
+    - name: monitored_status
+      image: monitored
+    tvdb_show: 261421
+    imdb_id: tt2361182

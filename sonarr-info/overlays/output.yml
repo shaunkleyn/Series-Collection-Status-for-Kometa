@@ -1,0 +1,231 @@
+templates:
+  poster_border_rounded:
+    overlay:
+      name: backdrop
+      back_color: '#2A2A2A00'
+      back_width: 1000
+      back_height: 1500
+      back_line_color: <<border_color>>
+      back_line_width: 20
+      horizontal_align: left
+      horizontal_offset: 0
+      vertical_align: top
+      vertical_offset: 0
+      back_radius: 40
+      weight: 500
+      group: rounded_border
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+  poster_border:
+    overlay:
+      name: backdrop
+      back_color: '#2A2A2A00'
+      back_width: 1000
+      back_height: 1500
+      back_line_color: <<border_color>>
+      back_line_width: 20
+      horizontal_align: left
+      horizontal_offset: 0
+      vertical_align: top
+      vertical_offset: 0
+      back_radius: 0
+      weight: 500
+      group: border
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+  progress_background:
+    overlay:
+      name: backdrop
+      back_color: '#4E4E4EB3'
+      back_width: 1000
+      back_height: 0
+      horizontal_align: left
+      horizontal_offset: 0
+      vertical_align: bottom
+      vertical_offset: 0
+      back_radius: 40
+      weight: 510
+      group: bg
+    plex_all: true
+  progress_bar:
+    default:
+      back_color: '#37A03A'
+    overlay:
+      name: backdrop
+      back_color: <<back_color>>
+      back_width: <<width>>
+      back_height: 0
+      horizontal_align: left
+      horizontal_offset: 0
+      vertical_align: bottom
+      vertical_offset: 0
+      weight: 210
+      back_radius: 40
+      group: border2
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+  progress_text:
+    default:
+      text: '-'
+    overlay:
+      name: text(<<text>>)
+      font_size: 70
+      back_align: right
+      font_color: '#ffffff'
+      back_width: 1000
+      back_height: 120
+      horizontal_align: left
+      vertical_align: bottom
+      horizontal_offset: 40
+      vertical_offset: 0
+      stroke_width: 5
+      stroke_color: '#00000045'
+      weight: 320
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+  new_status_shadow:
+    overlay:
+      name: <<image>>
+      horizontal_align: left
+      vertical_align: top
+      horizontal_offset: 15
+      vertical_offset: 165
+      weight: 330
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+  new_status:
+    overlay:
+      name: <<image>>
+      horizontal_align: left
+      vertical_align: top
+      horizontal_offset: 10
+      vertical_offset: 160
+      weight: 330
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+  monitored_status:
+    overlay:
+      name: <<image>>
+      horizontal_align: left
+      vertical_align: bottom
+      horizontal_offset: 25
+      vertical_offset: 0
+      weight: 330
+    tvdb_show: <<tvdb_show>>
+    imdb_id: <<imdb_id>>
+overlays:
+  progress_bg:
+    template:
+    - name: progress_background
+  la-brea_2021_border:
+    template:
+    - name: poster_border
+      border_color: '#2273C6'
+    tvdb_show: 395029
+    imdb_id: tt11640018
+  la-brea_2021__rounded_border:
+    template:
+    - name: poster_border_rounded
+      border_color: '#2273C6'
+    tvdb_show: 395029
+    imdb_id: tt11640018
+  la-brea_2021:
+    template:
+    - name: progress_bar
+      width: 1000
+      back_color: '#2273C6'
+    tvdb_show: 395029
+    imdb_id: tt11640018
+  a-crime-to-remember_2013_border:
+    template:
+    - name: poster_border
+      border_color: '#37A03A'
+    tvdb_show: 275245
+    imdb_id: tt3044834
+  a-crime-to-remember_2013__rounded_border:
+    template:
+    - name: poster_border_rounded
+      border_color: '#37A03A'
+    tvdb_show: 275245
+    imdb_id: tt3044834
+  a-crime-to-remember_2013:
+    template:
+    - name: progress_bar
+      width: 1000
+    tvdb_show: 275245
+    imdb_id: tt3044834
+  how-the-universe-works_2010_border:
+    template:
+    - name: poster_border
+      border_color: '#CA7C29'
+    tvdb_show: 159651
+    imdb_id: tt1832668
+  how-the-universe-works_2010__rounded_border:
+    template:
+    - name: poster_border_rounded
+      border_color: '#CA7C29'
+    tvdb_show: 159651
+    imdb_id: tt1832668
+  how-the-universe-works_2010:
+    template:
+    - name: progress_bar
+      width: 881
+      back_color: '#0000009D'
+    tvdb_show: 159651
+    imdb_id: tt1832668
+  rick-and-morty_2013_border:
+    template:
+    - name: poster_border
+      border_color: '#CA7C29'
+    tvdb_show: 275274
+    imdb_id: tt2861424
+  rick-and-morty_2013__rounded_border:
+    template:
+    - name: poster_border_rounded
+      border_color: '#CA7C29'
+    tvdb_show: 275274
+    imdb_id: tt2861424
+  rick-and-morty_2013:
+    template:
+    - name: progress_bar
+      width: 859
+      back_color: '#0000009D'
+    tvdb_show: 275274
+    imdb_id: tt2861424
+  signs-of-a-psychopath_2020_border:
+    template:
+    - name: poster_border
+      border_color: '#2273C6'
+    tvdb_show: 387339
+    imdb_id: tt13530014
+  signs-of-a-psychopath_2020__rounded_border:
+    template:
+    - name: poster_border_rounded
+      border_color: '#2273C6'
+    tvdb_show: 387339
+    imdb_id: tt13530014
+  signs-of-a-psychopath_2020:
+    template:
+    - name: progress_bar
+      width: 1000
+      back_color: '#2273C6'
+    tvdb_show: 387339
+    imdb_id: tt13530014
+  the-unexplained-2012_2012_border:
+    template:
+    - name: poster_border
+      border_color: '#37A03A'
+    tvdb_show: 261421
+    imdb_id: tt2361182
+  the-unexplained-2012_2012__rounded_border:
+    template:
+    - name: poster_border_rounded
+      border_color: '#37A03A'
+    tvdb_show: 261421
+    imdb_id: tt2361182
+  the-unexplained-2012_2012:
+    template:
+    - name: progress_bar
+      width: 1000
+    tvdb_show: 261421
+    imdb_id: tt2361182

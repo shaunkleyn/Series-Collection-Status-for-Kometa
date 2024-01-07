@@ -74,13 +74,13 @@ libraries:                       # This is called out once within the config.yml
     ###    vertical_offset: 35
     ###    vertical_align: bottom 
     # see the wiki for how to use local files, folders, URLs, or files from git
-  TV Shows:
+  Test-Shows:
     #metadata_path:
     #- file: config/Shows.yml
     overlay_path:
-    #- remove_overlays: true
-    #- reapply_overlays: true 
-    - file: config/overlays/TV-Shows-returning-soon-overlay.yml
+     #- remove_overlays: true     
+    - reapply_overlays: true  
+    - file: config/overlays/Test-Shows-returning-soon-overlay.yml
       template_variables:
         back_width: 920
         vertical_offset: 40
@@ -107,33 +107,18 @@ libraries:                       # This is called out once within the config.yml
         ended_text: "ENDED"
 
         font-size: 80
-    - file: config/availability/overlays/availability.yml
-    
-    #- pmm: status
-    #  template_variables:
-    #    back_line_color: "#e5a00d"
-    #    back_line_width: 25
-    #    back_color: "#00000000"
-    #    back_width: 950
-    #    back_height: 1450
-    #    vertical_offset: 25
-    #    horizontal_offset: 25
-    #    horizontal_align: left
-    #    back_radius: 20
-    #    
-
-
-    #- folder: config/overlays/
+    # - file: config/sonarr-info/overlays/config.yml
+    # - file: config/sonarr-info/overlays/sonarr-info.yml
+    - file: config/sonarr-info/overlays/output.yml
     - pmm: network
       template_variables:
         horizontal_align: left
         vertical_align: bottom
-        vertical_offset: 40
+        vertical_offset: 20
         horizontal_offset: 40
-        text_align: left
-        addon_position: left
-        addon_offset: 50
-    - file: config/overlays/normalized.yml
+        back_align: left
+        back_color: '#00000000'
+    #- file: config/overlays/normalized.yml
 
     ###- pmm: resolution
     ###  template_variables:
@@ -214,7 +199,7 @@ tmdb:                            # REQUIRED for the script to run
   cache_expiration: 60
   region:
 tautulli:                        # Can be individually specified per library as well
-  url: https://tautulli.mediaservarr.co.za
+  url: http://127.0.0.1:8181
 # url: http://192.168.8.100:28181/
   apikey: f8056366ada64f38a1ffd57966b47d0f
 #github:
@@ -233,7 +218,7 @@ anidb:                           # Not required for AniDB builders unless you wa
   language: en
   client:
 radarr:                          # Can be individually specified per library as well
-  url: https://radarr.mediaservarr.co.za
+  url: http://127.0.0.1:7878
 #  url: http://192.168.8.100:7676/
 #  token: b293e113389a48ebbe95e92177aea8ee
   token: 964c1be22a464dfd989627a595214755
@@ -250,7 +235,7 @@ radarr:                          # Can be individually specified per library as 
   upgrade_existing: false
   ignore_cache: false
 sonarr:                          # Can be individually specified per library as well
-  url: https://sonarr.mediaservarr.co.za
+  url: http://127.0.0.1:8989
 #  url: http://192.168.8.100:8989/
   token: d4f9ec92776f449d812c2a34c9f24091
   add_missing: false
