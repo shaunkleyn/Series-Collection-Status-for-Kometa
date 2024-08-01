@@ -4,7 +4,7 @@
 
 
 ## Background
-I wanted to be able to easily see on Plex if a show has been downloaded in full or if there are missing episodes or seasons. After searching around for days for something that can do it I finally asked for some help from the guys on the [Kometa Discord group](https://discord.gg/NfH6mGFuAB) and SirGareth [confirmed](https://discord.com/channels/822460010649878528/822460010649878531/1061099419153469571) that [Kometa](https://metamanager.wiki/en/latest/index.html) (PMM) would not be able to do it but that I'd be able to do it using a few API's to add labels to Plex and then use Kometa to add overlays using those labels.
+I wanted to be able to easily see on Plex if a show has been downloaded in full or if there are missing episodes or seasons. After searching around for days for something that can do it I finally asked for some help from the guys on the [Kometa Discord group](https://discord.gg/NfH6mGFuAB) and SirGareth [confirmed](https://discord.com/channels/822460010649878528/822460010649878531/1061099419153469571) that [Kometa](https://metamanager.wiki/en/latest/index.html) (formaly know as PMM) would not be able to do it but that I'd be able to do it using a few API's to add labels to Plex and then use Kometa to add overlays using those labels.
 
 Being a newbie to both Python and Kometa I am sure there are neater and better ways to accomplish this but this is the script and configs I came up with that is currently working for me.  
 
@@ -13,7 +13,7 @@ I created this for my own personal use and sharing it so that anyone can change 
 
 
 ## The script
-The script is far from perfect and there are a few bugs but thus far it's working for most of the shows. It makes use of [ArrApi](https://arrapi.metamanager.wiki/en/latest/index.html) and [Python PlexAPI](https://python-plexapi.readthedocs.io/en/latest/introduction.html) to check whether a show or season is complete and then adds a Plex label to it that can then later be used by PMM to create overlays.
+The script is far from perfect and there are a few bugs but thus far it's working for most of the shows. It makes use of [ArrApi](https://arrapi.metamanager.wiki/en/latest/index.html) and [Python PlexAPI](https://python-plexapi.readthedocs.io/en/latest/introduction.html) to check whether a show or season is complete and then adds a Plex label to it that can then later be used by Kometa to create overlays.
 
 ## The Kometa configs
 There are 2 configs (I'm sure there's a way to only use 1 but still have a lot to learn), one to create the overlays for Shows and the other to create overlays for Seasons. 
@@ -24,13 +24,13 @@ There are 2 configs (I'm sure there's a way to only use 1 but still have a lot t
 2. Copy the Python script to a folder of your preference (I suggest creating a dedicated folder for the script as we'll be using a Python virtual environemt to run it)
 3. Configure your URL's and API key & token in the `set-availability-labels.ini` file
 4. Using a terminal / command prompt, `cd` to the script's directory
-5. Run the following to create a virtual environment `python -m venv pmm-venv` or `python3 -m venv pmm-venv` (check which one works for you)
-6. Activate the virtual environment using `pmm-venv\Scripts\activate`
+5. Run the following to create a virtual environment `python -m venv .venv` or `python3 -m venv .venv` (check which one works for you)
+6. Activate the virtual environment using `.venv\Scripts\activate`
 7. Install ArrAPI using `pip install arrapi`
 8. Install Python PlexAPI using `pip install plexapi`
 9. Run the script using `python set-availability-labels.py`
-10. Update your PMM config to include the "availability.yml" configs and copy the overlays to your overlays folder
-11. Run PMM
+10. Update your Kometa config to include the "availability.yml" configs and copy the overlays to your overlays folder
+11. Run Kometa
 
 ## The Plex labels
 Show can either be complete, meaning all the seasons and episodes are availabe on disk, or incomplete, meaning some seasons or episodes are missing.  However, if there's a new show or season that are being aired not all episodes will be available yet and I don't want to label it as "incomplete" because the missing episodes aren't available yet.  Due to this I had to an "In progress" label.
