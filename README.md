@@ -1,12 +1,12 @@
-# PMM-Config for Series Availability borders in Plex
+# Series Collection Status in Plex using Kometa
 
 ![image](https://user-images.githubusercontent.com/10231893/211212798-9be5abac-8728-4a53-a714-565f23663623.png)
 
 
 ## Background
-I wanted to be able to easily see on Plex if a show has been downloaded in full or if there are missing episodes or seasons. After searching around for days for something that can do it I finally asked for some help from the guys on the [Plex Meta Manager Discord group](https://discord.gg/NfH6mGFuAB) and SirGareth [confirmed](https://discord.com/channels/822460010649878528/822460010649878531/1061099419153469571) that [Plex Meta Manager](https://metamanager.wiki/en/latest/index.html) (PMM) would not be able to do it but that I'd be able to do it using a few API's to add labels to Plex and then use PMM to add overlays using those labels.
+I wanted to be able to easily see on Plex if a show has been downloaded in full or if there are missing episodes or seasons. After searching around for days for something that can do it I finally asked for some help from the guys on the [Kometa Discord group](https://discord.gg/NfH6mGFuAB) and SirGareth [confirmed](https://discord.com/channels/822460010649878528/822460010649878531/1061099419153469571) that [Kometa](https://metamanager.wiki/en/latest/index.html) (PMM) would not be able to do it but that I'd be able to do it using a few API's to add labels to Plex and then use Kometa to add overlays using those labels.
 
-Being a newbie to both Python and PMM I am sure there are neater and better ways to accomplish this but this is the script and configs I came up with that is currently working for me.  
+Being a newbie to both Python and Kometa I am sure there are neater and better ways to accomplish this but this is the script and configs I came up with that is currently working for me.  
 
 **NOTE:**
 I created this for my own personal use and sharing it so that anyone can change it to their liking and requirements.
@@ -15,11 +15,11 @@ I created this for my own personal use and sharing it so that anyone can change 
 ## The script
 The script is far from perfect and there are a few bugs but thus far it's working for most of the shows. It makes use of [ArrApi](https://arrapi.metamanager.wiki/en/latest/index.html) and [Python PlexAPI](https://python-plexapi.readthedocs.io/en/latest/introduction.html) to check whether a show or season is complete and then adds a Plex label to it that can then later be used by PMM to create overlays.
 
-## The PMM configs
+## The Kometa configs
 There are 2 configs (I'm sure there's a way to only use 1 but still have a lot to learn), one to create the overlays for Shows and the other to create overlays for Seasons. 
 
 ## How to use this
-(Basic Python and PMM knowledge required)
+(Basic Python and Kometa knowledge required)
 1. Download all files in this repo
 2. Copy the Python script to a folder of your preference (I suggest creating a dedicated folder for the script as we'll be using a Python virtual environemt to run it)
 3. Configure your URL's and API key & token in the `set-availability-labels.ini` file
