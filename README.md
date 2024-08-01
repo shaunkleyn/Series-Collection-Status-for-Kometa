@@ -1,6 +1,5 @@
 # Series Collection Status in Plex using Kometa
-
-![image](https://user-images.githubusercontent.com/10231893/211212798-9be5abac-8728-4a53-a714-565f23663623.png)
+<img  alt="Screenshot 2024-08-01 at 18 34 46-min" src="https://github.com/user-attachments/assets/ffda5919-1d2c-4953-be22-02818469214f">
 
 
 ## Background
@@ -51,11 +50,11 @@ I decided to use borders to display the availability of shows and seasons.  The 
 * Orange = Incomplete
 * Blue = In Progress
 
-![image](https://user-images.githubusercontent.com/10231893/211212798-9be5abac-8728-4a53-a714-565f23663623.png)
+<img  alt="Screenshot 2024-08-01 at 18 34 46-min" src="https://github.com/user-attachments/assets/8074cca6-a63c-4496-a38c-82ccb827bf1a">
 
-You can see that "Evil Online" is incomplete (by the orange border).  If I go into "Evil Online" you can see that Season 1 is complete (green border), Season 2 is missing and Season 3 has episodes missing (orange border).
+You can see that "Dr Who" is incomplete (by the orange border).  If I go into "Dr Who" you can see that Season 1 and Season 2 is complete (green border), Season 3 has missing episodes and Season 4 and Season 5 are also complete.
 
-<img src="https://user-images.githubusercontent.com/10231893/211212821-0181fa2b-9ba1-4e49-aa53-592e6ea205ac.png" alt="drawing" height="300"/>
+<img  alt="Screenshot 2024-08-01 at 18 33 53-min" src="https://github.com/user-attachments/assets/896bcc4b-6a58-44c6-a254-b26de154dfc5">
 
 
 
